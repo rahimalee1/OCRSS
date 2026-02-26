@@ -212,7 +212,7 @@ export const Eventdata: {
       "Donec hendrerit, dui quis ultricies eleifend, ipsum sapien auctor ligula, vitae interdum augue metus nec sem. Pellentesque mollis ex risus, eget dignissim nibh fermentum in. Cras eu ipsum eget ante ullamcorper vehicula. Suspendisse non blandit mi.Mauris eu sapien urna. Fusce eu luctus augue, non vestibulum felis. Fusce sollicitudin porta augue non porta. Vivamus ullamcorper tristique nisi, in mattis elit porta vitae. Curabitur euismod lectus non maximus dictum. Vivamus luctus, eros at posuere",
   },
   {
-    image: "/images/event/event-3.avif",
+    image: "/images/event/event-3.jpeg",
     title: "Learn from small things to create something bigger.",
     slug: "event-3",
     text: "3, 3025 Nanaimo Street, Vancouver, CANADA",

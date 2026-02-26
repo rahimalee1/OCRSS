@@ -1,10 +1,22 @@
 "use client"
 import { ServiceData } from "@/app/api/data";
-import Image from "next/image";
 import Link from "next/link";
+import { Icon } from "@iconify/react/dist/iconify.js";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+
+const serviceIcons = [
+    "mdi:earth",
+    "mdi:translate",
+    "mdi:briefcase-outline",
+    "mdi:account-group-outline",
+    "mdi:account-child-outline",
+    "mdi:school-outline",
+    "mdi:hand-heart-outline",
+    "mdi:leaf",
+    "mdi:handshake-outline",
+];
 
 const Causes = () => {
     const settings = {
@@ -45,24 +57,19 @@ const Causes = () => {
                         {ServiceData.map((item, index) => (
                             <div key={index} className="px-4">
                                 <Link href={`/services/${item.slug}`}>
-                                    <div className="bg-white group dark:bg-dark rounded-4 overflow-hidden">
-                                        <div className="overflow-hidden h-[220px]">
-                                            <Image
-                                                src={item.image}
-                                                alt={item.title}
-                                                width={350}
-                                                height={220}
-                                                className="w-full h-full object-cover group-hover:scale-110 duration-300"
+                                    <div className="group bg-white dark:bg-dark rounded-lg p-8 text-center h-[280px] flex flex-col items-center justify-center shadow-cause-shadow dark:shadow-darkmd hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                                        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary transition-colors duration-300">
+                                            <Icon
+                                                icon={serviceIcons[index] || "mdi:star-outline"}
+                                                className="text-3xl text-primary group-hover:text-white transition-colors duration-300"
                                             />
                                         </div>
-                                        <div className="px-8 pt-8 pb-6 shadow-cause-shadow dark:shadow-darkmd h-[200px] flex flex-col">
-                                            <h4 className="text-lg font-bold dark:text-white group-hover:text-primary mb-3 line-clamp-2">
-                                                {item.title}
-                                            </h4>
-                                            <p className="text-muted dark:text-white/80 text-sm leading-relaxed line-clamp-3">
-                                                {item.subtitle}
-                                            </p>
-                                        </div>
+                                        <h4 className="text-lg font-bold text-midnight_text dark:text-white group-hover:text-primary mb-3 line-clamp-2 transition-colors duration-300">
+                                            {item.title}
+                                        </h4>
+                                        <p className="text-muted dark:text-white/80 text-sm leading-relaxed line-clamp-3">
+                                            {item.subtitle}
+                                        </p>
                                     </div>
                                 </Link>
                             </div>

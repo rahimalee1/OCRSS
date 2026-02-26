@@ -23,6 +23,7 @@ export async function POST(request: Request) {
       employment,
       maritalStatus,
       children,
+      familySize,
     } = body as Record<string, string>;
 
     if (!firstName || !lastName || !email) {
@@ -70,6 +71,7 @@ export async function POST(request: Request) {
       `Job / Employment: ${employment || "N/A"}`,
       `Marital Status: ${maritalStatus || "N/A"}`,
       `Children: ${children || "N/A"}`,
+      `Family Size: ${familySize || "N/A"}`,
     ];
 
     await transporter.sendMail({

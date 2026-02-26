@@ -300,6 +300,28 @@ const Volunteer = () => {
                   <option value="no">I don't have / No</option>
                 </select>
               </div>
+              <div className="flex flex-col">
+                <label className="pb-2 text-base text-midnight_text dark:text-white">
+                  Family Size
+                </label>
+                <select
+                  name="familySize"
+                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
+                >
+                  <option value="">Select family size</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="10+">10+</option>
+                </select>
+              </div>
               <div className="md:col-span-2 mt-4 flex justify-end">
                 <button
                   type="submit"
