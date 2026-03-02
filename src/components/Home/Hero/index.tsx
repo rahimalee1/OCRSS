@@ -9,7 +9,7 @@ const Hero = () => {
   const donationInfo = useContext(DonationFormContext);
   return (
     <>
-    <section className="relative bg-cover text-white md:pt-40 md:pb-28 py-20 bg-no-repeat bg-[url('/images/hero/banner-bg.jpg')] lg:mt-40 sm:mt-44 mt-20" >
+    <section className="relative bg-cover text-white md:pt-40 md:pb-28 pt-28 pb-20 bg-no-repeat bg-[url('/images/hero/banner-bg.jpg')] lg:pt-44 sm:pt-44" >
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4 grid grid-cols-12">
           <div className="bg-white rounded-md p-10 lg:col-span-5 md:col-span-7 sm:col-span-10 col-span-12 dark:bg-dark" data-aos="fade-right">
           <div className="mb-6">

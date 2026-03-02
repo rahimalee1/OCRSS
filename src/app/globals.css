@@ -92,6 +92,12 @@ html,
 body {
   @apply overflow-x-hidden;
 }
+body {
+  @apply bg-white;
+}
+.dark body {
+  background-color: var(--color-dark);
+}
 
 .blog-details p,
 .blog-details hr {
