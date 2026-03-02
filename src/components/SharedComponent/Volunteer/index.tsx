@@ -1,8 +1,15 @@
 "use client"
 
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Logo from "@/components/Layout/Header/Logo";
 import { useState } from "react";
 import toast from "react-hot-toast";
+
+const inputClass =
+  "w-full rounded-md border placeholder:text-gray-400 border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition focus:border-primary focus-visible:shadow-none dark:text-white dark:focus:border-primary";
+
+const selectClass =
+  "w-full rounded-md border border-border dark:border-dark_border border-solid bg-white dark:bg-dark px-5 py-3 text-base text-dark dark:text-white outline-hidden transition focus:border-primary dark:focus:border-primary [&>option]:bg-white [&>option]:text-dark dark:[&>option]:bg-dark dark:[&>option]:text-white";
 
 const Volunteer = () => {
   const [isMemberOpen, setIsMemberOpen] = useState(false);
@@ -50,10 +57,10 @@ const Volunteer = () => {
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">
           <div className="text-center">
             <h2 className="text-3xl font-medium text-white mb-6">
-              Become a member
+              Join Our Community
             </h2>
             <p className="text-base text-white lg:max-w-60% mx-auto mb-6">
-              Join our mission to make a positive impact! As a member, you’ll
+              Join our mission to make a positive impact! As a member, you'll
               stand with Oromo refugees, immigrants, and newcomers, helping us
               provide vital services and build a stronger community.
             </p>
@@ -62,7 +69,7 @@ const Volunteer = () => {
                 onClick={() => setIsMemberOpen(true)}
                 className="text-white rounded-md bg-linear-to-r text-sm font-semibold from-error to-warning px-7 py-4 hover:from-transparent hover:to-transparent border border-transparent hover:border-error hover:text-error"
               >
-                Become a member
+                Become a Member
               </button>
             </div>
           </div>
@@ -76,112 +83,63 @@ const Volunteer = () => {
             if (e.target === e.currentTarget) setIsMemberOpen(false);
           }}
         >
-          <div className="relative mx-auto my-8 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-lg bg-white px-6 py-8 text-left dark:bg-dark">
+          <div className="relative mx-auto my-8 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white px-8 py-10 text-left dark:bg-dark shadow-2xl form-modal-scroll">
             <button
               onClick={() => setIsMemberOpen(false)}
-              className="hover:bg-gray-200 dark:hover:bg-gray-700 p-1 rounded-full absolute top-4 right-4"
+              className="hover:bg-gray-200 dark:hover:bg-gray-700 p-1 rounded-full absolute top-4 right-4 z-10"
               aria-label="Close membership form"
             >
               <Icon icon="ic:round-close" className="text-2xl dark:text-white" />
             </button>
-            <h3 className="text-2xl font-semibold mb-2 text-midnight_text dark:text-white text-center">
+
+            <div className="flex justify-center mb-6">
+              <div className="max-w-[170px]">
+                <Logo />
+              </div>
+            </div>
+            <h3 className="text-2xl font-bold mb-2 text-midnight_text dark:text-white text-center">
               Become a Member
             </h3>
-            <p className="text-sm text-muted dark:text-white/70 mb-6 text-center">
+            <p className="text-sm text-muted dark:text-white/60 mb-8 text-center max-w-md mx-auto">
               Fill out the form below to join our community and support Oromo Cultural
               Resettlement Services Society.
             </p>
+
             <form
-              className="grid grid-cols-1 md:grid-cols-2 gap-4"
               onSubmit={handleMembershipSubmit}
             >
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  First Name
-                </label>
-                <input
-                  name="firstName"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                  required
-                />
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">Personal Information</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <input name="firstName" placeholder="First name *" required type="text" className={inputClass} />
+                <input name="middleName" placeholder="Middle name" type="text" className={inputClass} />
+                <input name="lastName" placeholder="Last name *" required type="text" className={inputClass} />
               </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Middle Name
-                </label>
-                <input
-                  name="middleName"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Last Name
-                </label>
-                <input
-                  name="lastName"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                  required
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Age
-                </label>
-                <input
-                  name="age"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="number"
-                  min={0}
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Gender
-                </label>
-                <select
-                  name="gender"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                >
-                  <option value="">Select gender</option>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <input name="age" placeholder="Age" type="number" min={0} className={inputClass} />
+                <select name="gender" className={selectClass}>
+                  <option value="">Gender</option>
                   <option value="female">Female</option>
                   <option value="male">Male</option>
                   <option value="other">Other</option>
                   <option value="preferNotSay">Prefer not to say</option>
                 </select>
+                <select name="maritalStatus" className={selectClass}>
+                  <option value="">Marital status</option>
+                  <option value="married">Married</option>
+                  <option value="single">Single</option>
+                  <option value="separated">Separated</option>
+                  <option value="widow">Widow</option>
+                </select>
               </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Address
-                </label>
-                <input
-                  name="address"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                />
+
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">Address</p>
+              <div className="grid grid-cols-1 gap-4 mb-4">
+                <input name="address" placeholder="Street address" type="text" className={inputClass} />
               </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  City
-                </label>
-                <input
-                  name="city"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Province / State
-                </label>
-                <select
-                  name="province"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                >
-                  <option value="">Select province</option>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <input name="city" placeholder="City" type="text" className={inputClass} />
+                <select name="province" className={selectClass}>
+                  <option value="">Province</option>
                   <option value="BC">British Columbia</option>
                   <option value="ON">Ontario</option>
                   <option value="QC">Quebec</option>
@@ -196,145 +154,55 @@ const Volunteer = () => {
                   <option value="NT">Northwest Territories</option>
                   <option value="NU">Nunavut</option>
                 </select>
+                <input name="zip" placeholder="Postal code" type="text" className={inputClass} />
               </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Postal / Zip Code
-                </label>
-                <input
-                  name="zip"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                />
+
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">Contact</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <input name="email" placeholder="Email *" required type="email" className={inputClass} />
+                <input name="phone" placeholder="Phone" type="tel" className={inputClass} />
+                <input name="homePhone" placeholder="Home phone" type="tel" className={inputClass} />
               </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Email
-                </label>
-                <input
-                  name="email"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="email"
-                  required
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Phone Number
-                </label>
-                <input
-                  name="phone"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="tel"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Office Phone
-                </label>
-                <input
-                  name="officePhone"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="tel"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Home Phone
-                </label>
-                <input
-                  name="homePhone"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="tel"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Educational
-                </label>
-                <input
-                  name="education"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Job / Employment
-                </label>
-                <select
-                  name="employment"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                >
-                  <option value="">Select status</option>
-                  <option value="employed">Has / Employed</option>
-                  <option value="unemployed">Not available / Unemployed</option>
+
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">Background</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <input name="education" placeholder="Education" type="text" className={inputClass} />
+                <select name="employment" className={selectClass}>
+                  <option value="">Employment status</option>
+                  <option value="employed">Employed</option>
+                  <option value="unemployed">Unemployed</option>
                   <option value="student">Student</option>
                 </select>
               </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Marital Status
-                </label>
-                <select
-                  name="maritalStatus"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                >
-                  <option value="">Select status</option>
-                  <option value="married">Married</option>
-                  <option value="single">Single</option>
-                  <option value="separated">Separated</option>
-                  <option value="widow">Widow</option>
+
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">Family</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <select name="children" className={selectClass}>
+                  <option value="">Children</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
                 </select>
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Children
-                </label>
-                <select
-                  name="children"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                >
-                  <option value="">Select option</option>
-                  <option value="yes">I have / Yes</option>
-                  <option value="no">I don't have / No</option>
-                </select>
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Family Size
-                </label>
-                <select
-                  name="familySize"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                >
-                  <option value="">Select family size</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
+                <select name="familySize" className={selectClass}>
+                  <option value="">Family size</option>
+                  {[1,2,3,4,5,6,7,8,9,10].map(n => (
+                    <option key={n} value={n}>{n}</option>
+                  ))}
                   <option value="10+">10+</option>
                 </select>
               </div>
-              <div className="md:col-span-2 mt-4 flex justify-end">
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="bg-linear-to-r from-primary to-secondary rounded-lg text-white py-3 px-8 hover:from-transparent hover:to-transparent hover:text-primary border hover:border-primary disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  {submitting ? "Sending..." : "Submit membership"}
-                </button>
-              </div>
+
+              <button
+                type="submit"
+                disabled={submitting}
+                className="text-white w-full text-base bg-linear-to-r from-primary to-secondary font-semibold border border-transparent py-4 px-7 rounded-md hover:text-primary hover:border-primary hover:from-transparent hover:to-transparent disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {submitting ? "Sending..." : "Submit Membership"}
+              </button>
+
+              {submitError && (
+                <p className="mt-4 text-sm text-red-500 text-center">{submitError}</p>
+              )}
             </form>
-            {submitError && (
-              <p className="mt-4 text-sm text-red-500">{submitError}</p>
-            )}
           </div>
         </div>
       )}

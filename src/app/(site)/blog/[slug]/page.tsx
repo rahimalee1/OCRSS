@@ -87,7 +87,7 @@ export default async function Post({ params }: any) {
                 <span className="text-base text-midnight_text font-medium dark:text-white pr-7 border-r border-solid border-grey dark:border-white w-fit">
                   {format(new Date(post.date), "dd MMM yyyy")}
                 </span>
-                <span className="text-base text-midnight_text font-medium dark:text-white sm:pl-7 pl-0 w-fit">13 Comments</span>
+                <span className="text-base text-midnight_text font-medium dark:text-white sm:pl-7 pl-0 w-fit">OCRSS Blog</span>
               </div>
               <h2 className="text-midnight_text dark:text-white text-[40px] leading-tight font-bold pt-7">
                 {post.title}
@@ -104,7 +104,7 @@ export default async function Post({ params }: any) {
                 quality={100}
               />
               <div className="">
-                <span className="text-[22px] leading-tight font-bold text-midnight_text dark:text-white">Silicaman</span>
+                <span className="text-[22px] leading-tight font-bold text-midnight_text dark:text-white">OCRSS Team</span>
                 <p className="text-xl text-gray dark:text-white">Author</p>
               </div>
             </div>

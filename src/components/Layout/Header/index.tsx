@@ -182,11 +182,16 @@ const Header: React.FC = () => {
       </div>
       {/* Donation Popup */}
       {donationInfo?.isDonationOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50 m-0!">
-          <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-lg bg-white px-8 py-14 text-center dark:bg-dark">
+        <div
+          className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 px-4 overflow-y-auto"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) donationInfo?.setIsDonationOpen(false);
+          }}
+        >
+          <div className="relative mx-auto my-8 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white px-8 py-10 text-left dark:bg-dark shadow-2xl form-modal-scroll">
             <button
               onClick={() => donationInfo?.setIsDonationOpen(false)}
-              className=" hover:bg-gray-200 dark:hover:bg-gray-700 p-1 rounded-full absolute -top-5 -right-3 mr-8 mt-8"
+              className="hover:bg-gray-200 dark:hover:bg-gray-700 p-1 rounded-full absolute top-4 right-4 z-10"
               aria-label="Close Donation Modal"
             >
               <Icon icon="ic:round-close" className="text-2xl dark:text-white" />

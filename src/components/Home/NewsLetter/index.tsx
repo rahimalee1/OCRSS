@@ -26,7 +26,7 @@ const Newsletter = () => {
           </div>
           <div className="lg:mt-0 mt-8">
             <div className="flex justify-between items-center border-b border-border dark:border-dark_border focus:border-primary dark:focus:border-primary dark:bg-dark pb-6 mb-8 focus-visible:outline-none-10">
-              <h4 className="text-base mb-0">Latest news at endeavor</h4>
+              <h4 className="text-base mb-0">Latest from OCRSS</h4>
               <Link href="/blog" className="text-error hover:text-warning text-base">
                 View all
               </Link>

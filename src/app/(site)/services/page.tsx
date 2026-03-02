@@ -7,7 +7,7 @@ import { ServiceData } from "@/app/api/data";
 import { Icon } from "@iconify/react";
 
 export const metadata: Metadata = {
-  title: "Our Services | ORCSS",
+  title: "Our Services | OCRSS",
 };
 
 const Page = () => {

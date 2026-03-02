@@ -24,8 +24,8 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
   return (
     <div className="relative w-full">
       <Link
-        href={item.href}
-        onClick={item.submenu ? handleToggle : undefined}
+        href={item.submenu ? "#" : item.href}
+        onClick={item.submenu ? (e) => { e.preventDefault(); handleToggle(); } : undefined}
         className={`flex items-center justify-between w-full py-2 px-3 text-black rounded-md dark:text-white/60 focus:outline-hidden  ${path.startsWith(`/${navString}`) ? "bg-primary! text-white!" : null} ${path === item.href ? "bg-primary! text-white! " : ""
           }`}
       >

@@ -145,3 +145,29 @@ body {
 .testimonial-slider .slick-slide > div {
   height: 100%;
 }
+
+/* Custom scrollbar for form modals (donation, membership, volunteer) */
+.form-modal-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-grey);
+}
+.dark .form-modal-scroll {
+  scrollbar-color: var(--color-primary) var(--color-dark);
+}
+.form-modal-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.form-modal-scroll::-webkit-scrollbar-track {
+  background: var(--color-grey);
+  border-radius: 4px;
+}
+.dark .form-modal-scroll::-webkit-scrollbar-track {
+  background: var(--color-dark);
+}
+.form-modal-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+}
+.form-modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--color-darkprimary);
+}

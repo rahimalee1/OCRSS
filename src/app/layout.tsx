@@ -4,7 +4,7 @@ import Header from "@/components/Layout/Header";
 import Footer from "@/components/Layout/Footer";
 import { ThemeProvider } from "next-themes";
 import ScrollToTop from '@/components/ScrollToTop';
-import Aoscompo from "@/utils/aos";
+import Aoscompo from "@/utils/aos"; 
 import { DonationProvider } from "./context/donationContext";
 import { Toaster } from "react-hot-toast";
 const montserrat = Montserrat({ subsets: ["latin"] });

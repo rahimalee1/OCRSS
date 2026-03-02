@@ -1,8 +1,11 @@
- "use client"
+"use client"
 
 import Logo from "@/components/Layout/Header/Logo";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
+
+const inputClass =
+  "w-full rounded-md border placeholder:text-gray-400 border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition focus:border-primary focus-visible:shadow-none dark:text-white dark:focus:border-primary";
 
 export const Donation = () => {
   const [donationAmount, setDonationAmount] = useState<string | null>(null);
@@ -75,128 +78,130 @@ export const Donation = () => {
 
   return (
     <>
-      <div className="mb-10 text-center mx-auto inline-block max-w-[170px]">
-        <Logo />
+      <div className="flex justify-center mb-6">
+        <div className="max-w-[220px]">
+          <Logo />
+        </div>
       </div>
-      <form ref={formRef} onSubmit={handleSubmit}>
-          <div className="mb-[22px]">
-            <input
-              type="text"
-              placeholder="First name"
-              name="firstName"
-              className="w-full rounded-md border placeholder:text-gray-400  border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition  focus:border-primary focus-visible:shadow-none dark:border-border_color dark:text-white dark:focus:border-primary"
-            />
-          </div>
-          <div className="mb-[22px]">
-            <input
-              type="text"
-              placeholder="Last name"
-              name="lastName"
-              className="w-full rounded-md border placeholder:text-gray-400  border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition  focus:border-primary focus-visible:shadow-none dark:border-border_color dark:text-white dark:focus:border-primary"
-            />
-          </div>
-          <div className="mb-[22px]">
-            <input
-              type="email"
-              placeholder="Email address"
-              name="email"
-              className="w-full rounded-md border placeholder:text-gray-400  border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition  focus:border-primary focus-visible:shadow-none dark:border-border_color dark:text-white dark:focus:border-primary"
-            />
-          </div>
-          <div className="mb-2.5">
-            <input
-              type="text"
-              ref={inputRef}
-              placeholder="Choose donation amount"
-              name="amount"
-              className="w-full rounded-md border placeholder:text-gray-400  border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition  focus:border-primary focus-visible:shadow-none dark:border-border_color dark:text-white dark:focus:border-primary"
-            />
-          </div>
-          <div className="mb-2">
-                        <div className="flex gap-4">
-              <div className="flex gap-2">
-                <input
-                  type="radio"
-                  name="donation"
-                  id="donation-10"
-                  onChange={(e: any) => getDonationAmount(e.target.value)}
-                  value={10}
-                />
-                <label
-                  htmlFor="donation-10"
-                  className="text-muted dark:text-white/60"
-                >
-                  $10
-                </label>
-              </div>
-              <div className="flex gap-2">
-                <input
-                  type="radio"
-                  name="donation"
-                  id="donation-50"
-                  onChange={(e: any) => getDonationAmount(e.target.value)}
-                  value={50}
-                />
-                <label
-                  htmlFor="donation-50"
-                  className="text-muted dark:text-white/60"
-                >
-                  $50
-                </label>
-              </div>
-              <div className="flex gap-2">
-                <input
-                  type="radio"
-                  name="donation"
-                  id="donation-100"
-                  onChange={(e: any) => getDonationAmount(e.target.value)}
-                  value={100}
-                />
-                <label
-                  htmlFor="donation-100"
-                  className="text-muted dark:text-white/60"
-                >
-                  $100
-                </label>
-              </div>
-                        </div>
-            </div>
-            <div className="mb-[22px] flex items-center gap-6">
-            <input
-              type="number"
-              onChange={(e: any) => {
-                getDonationAmount(e.target.value);
-              }}
-              placeholder="$ Other value"
-              name="customAmount"
-              className="w-full placeholder:text-gray-400 border-b min-w-44 rounded-none border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition  focus:border-primary focus-visible:shadow-none dark:border-border_color dark:text-white dark:focus:border-primary"
-            />
-            <p className="text-[15px] text-nowrap/60 dark:text-white" >Other donation amount</p>
-          </div>
+      <h3 className="text-2xl font-bold mb-2 text-midnight_text dark:text-white text-center">
+        Donate Now
+      </h3>
+      <p className="text-sm text-muted dark:text-white/60 mb-8 text-center max-w-md mx-auto">
+        Your gift helps us provide settlement, education, and community support
+        to refugees and newcomers in British Columbia.
+      </p>
 
-          <div className="flex gap-2 items-center">
-            <input type="checkbox" id="anonymous" name="anonymous" />
-            <label
-              htmlFor="anonymous"
-              className="text-muted dark:text-white/60 text-base"
-            >
-              I would like to donate anonymously
-            </label>
-          </div>
-                    
-          <div className="mb-0 mt-6">
-            <button
-              type="submit"
-              disabled={submitting}
-              className="text-white w-full text-base bg-linear-to-r from-primary to-secondary font-semibold border border-transparent py-4 px-7 rounded-md hover:text-primary hover:border-primary hover:from-transparent hover:to-transparent disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              {submitting ? "Sending..." : "Donate now"}
-            </button>
-          </div>
-          {submitError && (
-            <p className="mt-4 text-sm text-red-500">{submitError}</p>
-          )}
-        </form>
-      </>
-    );
-};
+      <form ref={formRef} onSubmit={handleSubmit}>
+        <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">
+          Personal Information
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <input
+            type="text"
+            placeholder="First name *"
+            name="firstName"
+            required
+            className={inputClass}
+          />
+          <input
+            type="text"
+            placeholder="Last name *"
+            name="lastName"
+            required
+            className={inputClass}
+          />
+        </div>
+        <div className="grid grid-cols-1 gap-4 mb-6">
+          <input
+            type="email"
+            placeholder="Email address *"
+            name="email"
+            required
+            className={inputClass}
+          />
+        </div>
+
+        <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">
+          Donation Amount
+        </p>
+        <div className="grid grid-cols-1 gap-4 mb-4">
+          <input
+            type="text"
+            ref={inputRef}
+            placeholder="Choose or enter amount ($)"
+            name="amount"
+            className={inputClass}
+          />
+        </div>
+        <div className="flex flex-wrap gap-4 mb-4">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="radio"
+              name="donation"
+              onChange={(e: any) => getDonationAmount(e.target.value)}
+              value={10}
+              className="text-primary focus:ring-primary"
+            />
+            <span className="text-muted dark:text-white/60">$10</span>
+          </label>
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="radio"
+              name="donation"
+              onChange={(e: any) => getDonationAmount(e.target.value)}
+              value={50}
+              className="text-primary focus:ring-primary"
+            />
+            <span className="text-muted dark:text-white/60">$50</span>
+          </label>
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="radio"
+              name="donation"
+              onChange={(e: any) => getDonationAmount(e.target.value)}
+              value={100}
+              className="text-primary focus:ring-primary"
+            />
+            <span className="text-muted dark:text-white/60">$100</span>
+          </label>
+        </div>
+        <div className="grid grid-cols-1 gap-4 mb-6">
+          <input
+            type="number"
+            onChange={(e: any) => getDonationAmount(e.target.value)}
+            placeholder="$ Other amount"
+            name="customAmount"
+            min={1}
+            className={inputClass}
+          />
+        </div>
+
+        <div className="flex gap-2 items-center mb-6">
+          <input
+            type="checkbox"
+            id="anonymous"
+            name="anonymous"
+            className="rounded border-border dark:border-dark_border text-primary focus:ring-primary"
+          />
+          <label
+            htmlFor="anonymous"
+            className="text-muted dark:text-white/60 text-base cursor-pointer"
+          >
+            I would like to donate anonymously
+          </label>
+        </div>
+
+        <button
+          type="submit"
+          disabled={submitting}
+          className="text-white w-full text-base bg-linear-to-r from-primary to-secondary font-semibold border border-transparent py-4 px-7 rounded-md hover:text-primary hover:border-primary hover:from-transparent hover:to-transparent disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          {submitting ? "Sending..." : "Donate now"}
+        </button>
+        {submitError && (
+          <p className="mt-4 text-sm text-red-500 text-center">{submitError}</p>
+        )}
+      </form>
+    </>
+  );
+}

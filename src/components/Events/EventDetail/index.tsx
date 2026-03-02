@@ -26,9 +26,10 @@ const EventDetails: FC<EventProps> = ({
   entrants,
   image
 }) => {
-  const formattedDate = eventdate
-    ? format(new Date(eventdate), "MMM dd, yyyy")
-    : "Date not available";
+  const parsedDate = eventdate ? new Date(eventdate) : null;
+  const formattedDate = parsedDate && !isNaN(parsedDate.getTime())
+    ? format(parsedDate, "MMM dd, yyyy")
+    : eventdate || "Date not available";
   return (
     <section className="sm:mt-28 pt-28 sm:pb-28 pb-12 dark:bg-dark">
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">

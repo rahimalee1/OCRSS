@@ -1,7 +1,59 @@
-import React from "react";
-import Link from "next/link";
+"use client"
+
+import React, { useEffect, useState } from "react";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import Logo from "@/components/Layout/Header/Logo";
+import toast from "react-hot-toast";
+
+const inputClass =
+  "w-full rounded-md border placeholder:text-gray-400 border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition focus:border-primary focus-visible:shadow-none dark:text-white dark:focus:border-primary";
+
+const selectClass =
+  "w-full rounded-md border border-border dark:border-dark_border border-solid bg-white dark:bg-dark px-5 py-3 text-base text-dark dark:text-white outline-hidden transition focus:border-primary dark:focus:border-primary [&>option]:bg-white [&>option]:text-dark dark:[&>option]:bg-dark dark:[&>option]:text-white";
 
 const ContactInfo = () => {
+  const [isVolunteerOpen, setIsVolunteerOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handler = () => setIsVolunteerOpen(true);
+    window.addEventListener("open-volunteer-form", handler);
+    return () => window.removeEventListener("open-volunteer-form", handler);
+  }, []);
+
+  const handleVolunteerSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setSubmitError(null);
+
+    const formData = new FormData(e.currentTarget);
+    const value = Object.fromEntries(formData.entries());
+
+    try {
+      const res = await fetch("/api/volunteer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(value),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || "Failed to submit volunteer form");
+      }
+
+      toast.success("Thank you! Your volunteer application has been sent.");
+      (e.target as HTMLFormElement).reset();
+      setIsVolunteerOpen(false);
+    } catch (error: any) {
+      const message = error?.message || "Something went wrong. Please try again.";
+      setSubmitError(message);
+      toast.error(message);
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <>
       <section className="dark:bg-dark pt-8 lg:pb-24 pb-16">
@@ -22,21 +74,15 @@ const ContactInfo = () => {
                   </p>
                 </div>
                 <div>
-                  <Link href="#" className="text-primary text-base font-medium flex items-center gap-3 group hover:text-midnight_text dark:hover:text-white">
+                  <a
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=oromocultural@gmail.com&su=Inquiry%20from%20Website"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary text-base font-medium flex items-center gap-3 group hover:text-midnight_text dark:hover:text-white cursor-pointer"
+                  >
                     Leave a message
-                    <svg
-                      width="23"
-                      height="17"
-                      viewBox="0 0 23 17"
-                      fill="#2CDD9B"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="group-hover:fill-midnight_text dark:group-hover:fill-white"
-                    >
-                      <path
-                        d="M22.653 7.76352L15.3613 0.471852C15.1648 0.282104 14.9017 0.177109 14.6286 0.179483C14.3555 0.181856 14.0942 0.291407 13.9011 0.484541C13.7079 0.677674 13.5984 0.938937 13.596 1.21206C13.5936 1.48518 13.6986 1.74831 13.8884 1.94477L19.4019 7.45831H1.08317C0.806904 7.45831 0.541951 7.56806 0.346601 7.76341C0.151251 7.95876 0.0415039 8.22371 0.0415039 8.49998C0.0415039 8.77625 0.151251 9.0412 0.346601 9.23655C0.541951 9.4319 0.806904 9.54165 1.08317 9.54165H19.4019L13.8884 15.0552C13.7889 15.1513 13.7095 15.2662 13.6549 15.3933C13.6003 15.5204 13.5716 15.6571 13.5704 15.7954C13.5692 15.9337 13.5956 16.0709 13.6479 16.1989C13.7003 16.3269 13.7777 16.4432 13.8755 16.541C13.9733 16.6388 14.0896 16.7162 14.2176 16.7685C14.3456 16.8209 14.4828 16.8473 14.6211 16.8461C14.7594 16.8449 14.8961 16.8161 15.0232 16.7615C15.1503 16.707 15.2652 16.6276 15.3613 16.5281L22.653 9.23644C22.8482 9.0411 22.958 8.77619 22.958 8.49998C22.958 8.22377 22.8482 7.95886 22.653 7.76352Z"
-                      />
-                    </svg>
-                  </Link>
+                    <Icon icon="mdi:arrow-right" className="text-xl text-primary group-hover:text-midnight_text dark:group-hover:text-white transition-colors" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -47,29 +93,21 @@ const ContactInfo = () => {
               <div className="flex md:flex-col sm:flex-row flex-col md:items-start sm:items-center items-start h-full justify-between">
                 <div>
                   <span className="text-midnight_text dark:text-white text-xl font-bold">
-                    Careers
+                    Volunteer With Us
                   </span>
                   <p className="text-DeepOcean font-normal max-w-80 pt-3 pb-7 dark:text-white/50 text-base">
-                    Sit ac ipsum leo lorem magna nunc mattis maecenas non
-                    vestibulum
+                    Join our team of dedicated volunteers and help newcomers
+                    settle, learn, and build a brighter future in British Columbia.
                   </p>
                 </div>
                 <div>
-                  <Link href="#" className="text-primary text-base font-medium flex items-center gap-3 group hover:text-midnight_text dark:hover:text-white">
-                    Send an application
-                    <svg
-                      width="23"
-                      height="17"
-                      viewBox="0 0 23 17"
-                      fill="#2CDD9B"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="group-hover:fill-midnight_text dark:group-hover:fill-white"
-                    >
-                      <path
-                        d="M22.653 7.76352L15.3613 0.471852C15.1648 0.282104 14.9017 0.177109 14.6286 0.179483C14.3555 0.181856 14.0942 0.291407 13.9011 0.484541C13.7079 0.677674 13.5984 0.938937 13.596 1.21206C13.5936 1.48518 13.6986 1.74831 13.8884 1.94477L19.4019 7.45831H1.08317C0.806904 7.45831 0.541951 7.56806 0.346601 7.76341C0.151251 7.95876 0.0415039 8.22371 0.0415039 8.49998C0.0415039 8.77625 0.151251 9.0412 0.346601 9.23655C0.541951 9.4319 0.806904 9.54165 1.08317 9.54165H19.4019L13.8884 15.0552C13.7889 15.1513 13.7095 15.2662 13.6549 15.3933C13.6003 15.5204 13.5716 15.6571 13.5704 15.7954C13.5692 15.9337 13.5956 16.0709 13.6479 16.1989C13.7003 16.3269 13.7777 16.4432 13.8755 16.541C13.9733 16.6388 14.0896 16.7162 14.2176 16.7685C14.3456 16.8209 14.4828 16.8473 14.6211 16.8461C14.7594 16.8449 14.8961 16.8161 15.0232 16.7615C15.1503 16.707 15.2652 16.6276 15.3613 16.5281L22.653 9.23644C22.8482 9.0411 22.958 8.77619 22.958 8.49998C22.958 8.22377 22.8482 7.95886 22.653 7.76352Z"
-                      />
-                    </svg>
-                  </Link>
+                  <button
+                    onClick={() => setIsVolunteerOpen(true)}
+                    className="text-primary text-base font-medium flex items-center gap-3 group hover:text-midnight_text dark:hover:text-white cursor-pointer"
+                  >
+                    Get involved
+                    <Icon icon="mdi:arrow-right" className="text-xl text-primary group-hover:text-midnight_text dark:group-hover:text-white transition-colors" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -87,6 +125,150 @@ const ContactInfo = () => {
         </div>
         <div className="border-b border-solid border-border dark:border-dark_border"></div>
       </section>
+
+      {isVolunteerOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-start justify-center bg-black/50 px-4 overflow-y-auto"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setIsVolunteerOpen(false);
+          }}
+        >
+          <div className="relative mx-auto my-8 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white px-8 py-10 text-left dark:bg-dark shadow-2xl form-modal-scroll">
+            <button
+              onClick={() => setIsVolunteerOpen(false)}
+              className="hover:bg-gray-200 dark:hover:bg-gray-700 p-1 rounded-full absolute top-4 right-4 z-10"
+              aria-label="Close volunteer form"
+            >
+              <Icon icon="ic:round-close" className="text-2xl dark:text-white" />
+            </button>
+
+            <div className="flex justify-center mb-6">
+              <div className="max-w-[170px]">
+                <Logo />
+              </div>
+            </div>
+            <h3 className="text-2xl font-bold mb-2 text-midnight_text dark:text-white text-center">
+              Become a Volunteer
+            </h3>
+            <p className="text-sm text-muted dark:text-white/60 mb-8 text-center max-w-md mx-auto">
+              Fill out the form below to join our volunteer team and support Oromo
+              Cultural Resettlement Services Society.
+            </p>
+
+            <form onSubmit={handleVolunteerSubmit}>
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">1. Personal Information</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <input name="firstName" placeholder="First name *" required type="text" className={inputClass} />
+                <input name="lastName" placeholder="Last name *" required type="text" className={inputClass} />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <input name="phone" placeholder="Phone number" type="tel" className={inputClass} />
+                <input name="email" placeholder="Email *" required type="email" className={inputClass} />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <input name="dob" placeholder="Date of birth" type="date" className={inputClass} />
+                <select name="gender" className={selectClass}>
+                  <option value="">Gender / Sex</option>
+                  <option value="female">Female</option>
+                  <option value="male">Male</option>
+                  <option value="other">Other</option>
+                  <option value="preferNotSay">Prefer not to say</option>
+                </select>
+              </div>
+              <div className="grid grid-cols-1 gap-4 mb-4">
+                <input name="address" placeholder="Address" type="text" className={inputClass} />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <input name="city" placeholder="City" type="text" className={inputClass} />
+                <input name="state" placeholder="State / Province" type="text" className={inputClass} />
+                <input name="zip" placeholder="Postal code" type="text" className={inputClass} />
+              </div>
+
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">2. Your Availability</p>
+              <div className="grid grid-cols-1 gap-4 mb-4">
+                <textarea name="availableDays" rows={2} placeholder="Days you are available (e.g. Monday, Wednesday, Friday)" className={inputClass} />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <input name="availableTime" placeholder="Available time (e.g. 4-8 PM)" type="text" className={inputClass} />
+                <select name="shiftLength" className={selectClass}>
+                  <option value="">Preferred shift length</option>
+                  <option value="1-hour">1 hour</option>
+                  <option value="2-hour">2 hours</option>
+                  <option value="3-hour">3 hours</option>
+                  <option value="4-hour">4 hours</option>
+                </select>
+                <input name="availabilityStart" placeholder="Start date" type="date" className={inputClass} />
+              </div>
+
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">3. Emergency Contact</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <input name="emergencyName" placeholder="Contact name" type="text" className={inputClass} />
+                <input name="emergencyRelationship" placeholder="Relationship" type="text" className={inputClass} />
+                <input name="emergencyPhone" placeholder="Contact phone" type="tel" className={inputClass} />
+              </div>
+
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">4. Experience & Skills</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <select name="previousExperience" className={selectClass}>
+                  <option value="">Previous volunteer experience</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+                <input name="languages" placeholder="Languages spoken" type="text" className={inputClass} />
+              </div>
+              <div className="grid grid-cols-1 gap-4 mb-6">
+                <textarea name="skills" rows={2} placeholder="Relevant skills (e.g. event planning, first aid, teaching, IT)" className={inputClass} />
+              </div>
+
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">5. Interests & Preferences</p>
+              <div className="grid grid-cols-1 gap-4 mb-6">
+                <textarea name="workType" rows={2} placeholder="Type of work you are interested in (e.g. outreach, fundraising, event assistance)" className={inputClass} />
+              </div>
+
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">6. Background & Consent</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <select name="backgroundCheckConsent" className={selectClass}>
+                  <option value="">Background check consent</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+                <select name="liabilityWaiver" className={selectClass}>
+                  <option value="">Liability waiver</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+                <select name="mediaRelease" className={selectClass}>
+                  <option value="">Photo / media release</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+              <div className="grid grid-cols-1 gap-4 mb-4">
+                <textarea name="motivation" rows={3} placeholder="Why do you want to volunteer with us?" className={inputClass} />
+              </div>
+              <div className="grid grid-cols-1 mb-8">
+                <select name="futureCommunicationConsent" className={selectClass}>
+                  <option value="">Consent for future communication</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+              </div>
+
+              <button
+                type="submit"
+                disabled={submitting}
+                className="text-white w-full text-base bg-linear-to-r from-primary to-secondary font-semibold border border-transparent py-4 px-7 rounded-md hover:text-primary hover:border-primary hover:from-transparent hover:to-transparent disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {submitting ? "Sending..." : "Submit Volunteer Application"}
+              </button>
+
+              {submitError && (
+                <p className="mt-4 text-sm text-red-500 text-center">{submitError}</p>
+              )}
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 };

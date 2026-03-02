@@ -99,7 +99,7 @@ export default async function BlogHead({ params }: Props) {
                                 style={{ width: 'auto', height: 'auto' }}
                             />
                             <div>
-                                <span className="text-[22px] leading-tight text-midnight_text">Silicaman</span>
+                                <span className="text-[22px] leading-tight text-midnight_text">OCRSS Team</span>
                                 <p className="text-xl text-midnight_text">Author</p>
                             </div>
                         </div>

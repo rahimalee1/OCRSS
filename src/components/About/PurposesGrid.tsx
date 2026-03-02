@@ -5,58 +5,63 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 const purposes = [
   {
     icon: "mdi:home-group",
-    title: "Settlement & Social Services",
-    text: "To provide social, educational, employment, and settlement services to refugees and immigrants of Oromo without excluding other persons of cultural backgrounds.",
+    title: "Settlement & Housing",
+    text: "To provide social, educational, employment, and settlement services including housing support to refugees and immigrants without excluding other persons of cultural backgrounds.",
   },
   {
     icon: "mdi:translate",
-    title: "Newcomer Assistance",
-    text: "To assist newcomers and refugees by providing them with services such as interpretation and translation, information, and referrals, pre-employment program, newcomer's orientation, and Canadian life skills in general.",
+    title: "Language & Information",
+    text: "To assist newcomers and refugees by providing interpretation, translation, information, referrals, and Canadian life skills support.",
+  },
+  {
+    icon: "mdi:compass-outline",
+    title: "Newcomer Orientation",
+    text: "To offer structured orientation sessions covering Canadian culture, rights, responsibilities, healthcare, education, and daily life skills.",
   },
   {
     icon: "mdi:earth",
-    title: "Community Development & Multiculturalism",
-    text: "To promote community development ideas, cultural understanding, and Canadian multiculturalism concept to new immigrants and refugees.",
+    title: "Cultural Understanding",
+    text: "To promote community development, cultural understanding, and the Canadian multiculturalism concept to new immigrants and refugees.",
   },
   {
-    icon: "mdi:handshake-outline",
-    title: "Advocacy & Partnerships",
-    text: "To actively seek private and government support to enhance opportunities and social development.",
+    icon: "mdi:hand-coin-outline",
+    title: "Fundraising & Partnerships",
+    text: "To actively seek private and government support to enhance opportunities and social development for our communities.",
   },
   {
     icon: "mdi:account-voice",
     title: "Active Participation",
-    text: "To encourage immigrant refugees to play a dynamic role in Canadian society.",
+    text: "To encourage immigrant refugees to play a dynamic role in Canadian society and build meaningful community connections.",
   },
   {
     icon: "mdi:hub-outline",
     title: "Community Network",
-    text: "Work closely with other associations, community organizations, and settlement services providers to establish a community network.",
+    text: "To work closely with associations, community organizations, and settlement services providers to establish a strong support network.",
   },
   {
     icon: "mdi:account-group-outline",
-    title: "Youth & Community Programs",
-    text: "To provide community programs and services to immigrant youth, refugees, and Canadians in general.",
+    title: "Youth & Family Programs",
+    text: "To provide workshops, seminars, leadership training, family counselling, parenting programs, and youth development for immigrant families and newcomers in British Columbia.",
   },
   {
     icon: "mdi:school-outline",
-    title: "Workshops & Family Counselling",
-    text: "Design a series of community workshops, seminars, leadership, and family counselling, community development training, community forums, parenting programs, children, and youth programs for immigrant families, newcomers, and refugees in British Columbia.",
-  },
-  {
-    icon: "mdi:book-education-outline",
     title: "Advancement of Education",
-    text: "To advance education by offering programs, classes, workshops, and learning resources related to studies, language, culture, ethics, and community knowledge, including educational activities for youth, adults, and families.",
+    text: "To advance education by offering programs, classes, workshops, and learning resources related to studies, language, culture, and community knowledge.",
   },
   {
     icon: "mdi:hand-heart-outline",
     title: "Relief of Poverty",
-    text: "To relieve poverty and hardship by providing assistance and support to individuals and families in need, including necessities, charitable aid, and community support programs.",
+    text: "To relieve poverty and hardship by providing assistance, basic necessities, charitable aid, and community support programs to individuals and families in need.",
   },
   {
     icon: "mdi:leaf",
-    title: "Community Benefit & Well-Being",
-    text: "To carry out activities that promote social inclusion, cultural understanding, moral development, and community well-being, including programs that support newcomers, youth, seniors, and vulnerable members of the community.",
+    title: "Community Well-Being",
+    text: "To carry out activities that promote social inclusion, cultural understanding, moral development, and well-being for newcomers, youth, seniors, and vulnerable community members.",
+  },
+  {
+    icon: "mdi:handshake-outline",
+    title: "Sponsorship & Resettlement",
+    text: "To connect refugees with sponsors and coordinate community sponsorship programs that provide a foundation for a new life in Canada.",
   },
 ];
 

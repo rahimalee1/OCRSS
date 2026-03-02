@@ -21,12 +21,18 @@ const EventList = () => {
                 />
                 <div className="px-3 py-2 bg-linear-to-r from-primary to-secondary absolute z-1 top-3 right-3 rounded-sm">
                   <p className="text-white text-sm mb-0 text-center">
-                    <span className="block ">
-                      {format(new Date(item.date), "MMM")}
-                    </span>
-                    <span className="block text-2xl">
-                      {format(new Date(item.date), "dd")}
-                    </span>
+                    {isNaN(new Date(item.date).getTime()) ? (
+                      <span className="block text-sm leading-tight py-1">{item.date}</span>
+                    ) : (
+                      <>
+                        <span className="block">
+                          {format(new Date(item.date), "MMM")}
+                        </span>
+                        <span className="block text-2xl">
+                          {format(new Date(item.date), "dd")}
+                        </span>
+                      </>
+                    )}
                   </p>
                 </div>
               </div>

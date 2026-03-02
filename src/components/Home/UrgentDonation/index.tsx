@@ -1,8 +1,15 @@
 "use client"
 
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Logo from "@/components/Layout/Header/Logo";
 import { useState } from "react";
 import toast from "react-hot-toast";
+
+const inputClass =
+  "w-full rounded-md border placeholder:text-gray-400 border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition focus:border-primary focus-visible:shadow-none dark:text-white dark:focus:border-primary";
+
+const selectClass =
+  "w-full rounded-md border border-border dark:border-dark_border border-solid bg-white dark:bg-dark px-5 py-3 text-base text-dark dark:text-white outline-hidden transition focus:border-primary dark:focus:border-primary [&>option]:bg-white [&>option]:text-dark dark:[&>option]:bg-dark dark:[&>option]:text-white";
 
 const UrgentDonation = () => {
   const [isVolunteerOpen, setIsVolunteerOpen] = useState(false);
@@ -31,7 +38,7 @@ const UrgentDonation = () => {
         throw new Error(data.error || "Failed to submit volunteer form");
       }
 
-      toast.success("Thank you! Your volunteer form has been sent.");
+      toast.success("Thank you! Your volunteer application has been sent.");
       e.target.reset();
       setIsVolunteerOpen(false);
     } catch (error: any) {
@@ -46,7 +53,7 @@ const UrgentDonation = () => {
 
   return (
     <>
-      <section className=" bg-[url('/images/background/donate-banner.jpg')] bg-cover sm:py-52 lg:py-28 py-16 bg-no-repeat">
+      <section className="bg-[url('/images/background/donate-banner.jpg')] bg-cover sm:py-52 lg:py-28 py-16 bg-no-repeat">
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">
           <div
             className="bg-white dark:bg-dark max-w-29 w-full px-10 py-14 rounded-lg text-center mx-auto"
@@ -82,384 +89,139 @@ const UrgentDonation = () => {
             if (e.target === e.currentTarget) setIsVolunteerOpen(false);
           }}
         >
-          <div className="relative mx-auto my-8 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg bg-white px-6 py-8 text-left dark:bg-dark">
+          <div className="relative mx-auto my-8 w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white px-8 py-10 text-left dark:bg-dark shadow-2xl form-modal-scroll">
             <button
               onClick={() => setIsVolunteerOpen(false)}
-              className="hover:bg-gray-200 dark:hover:bg-gray-700 p-1 rounded-full absolute top-4 right-4"
+              className="hover:bg-gray-200 dark:hover:bg-gray-700 p-1 rounded-full absolute top-4 right-4 z-10"
               aria-label="Close volunteer form"
             >
               <Icon icon="ic:round-close" className="text-2xl dark:text-white" />
             </button>
-            <h3 className="text-2xl font-semibold mb-2 text-midnight_text dark:text-white text-center">
+
+            <div className="flex justify-center mb-6">
+              <div className="max-w-[170px]">
+                <Logo />
+              </div>
+            </div>
+            <h3 className="text-2xl font-bold mb-2 text-midnight_text dark:text-white text-center">
               Become a Volunteer
             </h3>
-            <p className="text-sm text-muted dark:text-white/70 mb-6 text-center">
+            <p className="text-sm text-muted dark:text-white/60 mb-8 text-center max-w-md mx-auto">
               Fill out the form below to join our volunteer team and support Oromo
               Cultural Resettlement Services Society.
             </p>
 
-            <form
-              className="grid grid-cols-1 md:grid-cols-2 gap-4"
-              onSubmit={handleVolunteerSubmit}
-            >
-              {/* 1 - Personal info */}
-              <div className="md:col-span-2">
-                <h4 className="text-base font-semibold mb-2 text-midnight_text dark:text-white">
-                  1. Personal Information
-                </h4>
+            <form onSubmit={handleVolunteerSubmit}>
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">1. Personal Information</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <input name="firstName" placeholder="First name *" required type="text" className={inputClass} />
+                <input name="lastName" placeholder="Last name *" required type="text" className={inputClass} />
               </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  First Name
-                </label>
-                <input
-                  name="firstName"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                  required
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <input name="phone" placeholder="Phone number" type="tel" className={inputClass} />
+                <input name="email" placeholder="Email *" required type="email" className={inputClass} />
               </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Last Name
-                </label>
-                <input
-                  name="lastName"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                  required
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Phone Number
-                </label>
-                <input
-                  name="phone"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="tel"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Email
-                </label>
-                <input
-                  name="email"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="email"
-                  required
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Date of Birth
-                </label>
-                <input
-                  name="dob"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="date"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Gender / Sex
-                </label>
-                <select
-                  name="gender"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                >
-                  <option value="">Select gender</option>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <input name="dob" placeholder="Date of birth" type="date" className={inputClass} />
+                <select name="gender" className={selectClass}>
+                  <option value="">Gender / Sex</option>
                   <option value="female">Female</option>
                   <option value="male">Male</option>
                   <option value="other">Other</option>
                   <option value="preferNotSay">Prefer not to say</option>
                 </select>
               </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Address
-                </label>
-                <input
-                  name="address"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                />
+              <div className="grid grid-cols-1 gap-4 mb-4">
+                <input name="address" placeholder="Address" type="text" className={inputClass} />
               </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  City
-                </label>
-                <input
-                  name="city"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  State / Province
-                </label>
-                <input
-                  name="state"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Zip / Postal Code
-                </label>
-                <input
-                  name="zip"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <input name="city" placeholder="City" type="text" className={inputClass} />
+                <input name="state" placeholder="State / Province" type="text" className={inputClass} />
+                <input name="zip" placeholder="Postal code" type="text" className={inputClass} />
               </div>
 
-              {/* 2 - Availability */}
-              <div className="md:col-span-2 mt-4">
-                <h4 className="text-base font-semibold mb-2 text-midnight_text dark:text-white">
-                  2. Your Availability
-                </h4>
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">2. Your Availability</p>
+              <div className="grid grid-cols-1 gap-4 mb-4">
+                <textarea name="availableDays" rows={2} placeholder="Days you are available (e.g. Monday, Wednesday, Friday)" className={inputClass} />
               </div>
-              <div className="md:col-span-2 flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Days You Are Available
-                </label>
-                <textarea
-                  name="availableDays"
-                  rows={2}
-                  placeholder="e.g. Monday, Wednesday, Friday"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Available Time
-                </label>
-                <input
-                  name="availableTime"
-                  placeholder="e.g. Evenings, 4–8 PM"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Preferred Shift Length
-                </label>
-                <select
-                  name="shiftLength"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                >
-                  <option value="">Select length</option>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <input name="availableTime" placeholder="Available time (e.g. 4-8 PM)" type="text" className={inputClass} />
+                <select name="shiftLength" className={selectClass}>
+                  <option value="">Preferred shift length</option>
                   <option value="1-hour">1 hour</option>
                   <option value="2-hour">2 hours</option>
                   <option value="3-hour">3 hours</option>
                   <option value="4-hour">4 hours</option>
                 </select>
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Availability Start Date
-                </label>
-                <input
-                  name="availabilityStart"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="date"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Availability End Date
-                </label>
-                <input
-                  name="availabilityEnd"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="date"
-                />
+                <input name="availabilityStart" placeholder="Start date" type="date" className={inputClass} />
               </div>
 
-              {/* 3 - Emergency Contact */}
-              <div className="md:col-span-2 mt-4">
-                <h4 className="text-base font-semibold mb-2 text-midnight_text dark:text-white">
-                  3. Emergency Contact Information
-                </h4>
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Emergency Contact Name
-                </label>
-                <input
-                  name="emergencyName"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Relationship
-                </label>
-                <input
-                  name="emergencyRelationship"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="text"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Emergency Contact Phone Number
-                </label>
-                <input
-                  name="emergencyPhone"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                  type="tel"
-                />
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">3. Emergency Contact</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <input name="emergencyName" placeholder="Contact name" type="text" className={inputClass} />
+                <input name="emergencyRelationship" placeholder="Relationship" type="text" className={inputClass} />
+                <input name="emergencyPhone" placeholder="Contact phone" type="tel" className={inputClass} />
               </div>
 
-              {/* 4 - Experience & Skills */}
-              <div className="md:col-span-2 mt-4">
-                <h4 className="text-base font-semibold mb-2 text-midnight_text dark:text-white">
-                  4. Your Experience &amp; Skills
-                </h4>
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">4. Experience & Skills</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <select name="previousExperience" className={selectClass}>
+                  <option value="">Previous volunteer experience</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+                <input name="languages" placeholder="Languages spoken" type="text" className={inputClass} />
               </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Previous Volunteer Experience
-                </label>
-                <select
-                  name="previousExperience"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                >
-                  <option value="">Select option</option>
+              <div className="grid grid-cols-1 gap-4 mb-6">
+                <textarea name="skills" rows={2} placeholder="Relevant skills (e.g. event planning, first aid, teaching, IT)" className={inputClass} />
+              </div>
+
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">5. Interests & Preferences</p>
+              <div className="grid grid-cols-1 gap-4 mb-6">
+                <textarea name="workType" rows={2} placeholder="Type of work you are interested in (e.g. outreach, fundraising, event assistance)" className={inputClass} />
+              </div>
+
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">6. Background & Consent</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <select name="backgroundCheckConsent" className={selectClass}>
+                  <option value="">Background check consent</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+                <select name="liabilityWaiver" className={selectClass}>
+                  <option value="">Liability waiver</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </select>
+                <select name="mediaRelease" className={selectClass}>
+                  <option value="">Photo / media release</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
                 </select>
               </div>
-              <div className="md:col-span-2 flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Relevant Skills / Qualifications
-                </label>
-                <textarea
-                  name="skills"
-                  rows={2}
-                  placeholder="e.g. Event planning, first aid, teaching, customer service, IT, others"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                />
+              <div className="grid grid-cols-1 gap-4 mb-4">
+                <textarea name="motivation" rows={3} placeholder="Why do you want to volunteer with us?" className={inputClass} />
               </div>
-              <div className="md:col-span-2 flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Languages Spoken
-                </label>
-                <textarea
-                  name="languages"
-                  rows={2}
-                  placeholder="e.g. English, Afaan Oromo, others"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                />
-              </div>
-
-              {/* 5 - Interests & Preferences */}
-              <div className="md:col-span-2 mt-4">
-                <h4 className="text-base font-semibold mb-2 text-midnight_text dark:text-white">
-                  5. Your Interests &amp; Preferences
-                </h4>
-              </div>
-              <div className="md:col-span-2 flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Type of Work You Are Interested In
-                </label>
-                <textarea
-                  name="workType"
-                  rows={2}
-                  placeholder="e.g. Outreach, event assistance, fundraising, administrative support"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                />
-              </div>
-
-              {/* 6 - Background & Consent */}
-              <div className="md:col-span-2 mt-4">
-                <h4 className="text-base font-semibold mb-2 text-midnight_text dark:text-white">
-                  6. Background &amp; Consent
-                </h4>
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Consent to Background Check
-                </label>
-                <select
-                  name="backgroundCheckConsent"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                >
-                  <option value="">Select option</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Liability Waiver / Assumption of Risk
-                </label>
-                <select
-                  name="liabilityWaiver"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                >
-                  <option value="">Select option</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </div>
-              <div className="flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Photo / Media Release
-                </label>
-                <select
-                  name="mediaRelease"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                >
-                  <option value="">Select option</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-              </div>
-              <div className="md:col-span-2 flex flex-col">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Why do you want to volunteer with us?
-                </label>
-                <textarea
-                  name="motivation"
-                  rows={3}
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                />
-              </div>
-              <div className="flex flex-col md:col-span-2">
-                <label className="pb-2 text-base text-midnight_text dark:text-white">
-                  Consent for Future Communication
-                </label>
-                <select
-                  name="futureCommunicationConsent"
-                  className="w-full text-base px-4 py-2.5 rounded-lg border border-border dark:border-dark_border dark:text-white dark:bg-dark transition-all duration-500 focus:border-primary dark:focus:border-primary focus:outline-0"
-                >
-                  <option value="">Select option</option>
+              <div className="grid grid-cols-1 mb-8">
+                <select name="futureCommunicationConsent" className={selectClass}>
+                  <option value="">Consent for future communication</option>
                   <option value="yes">Yes</option>
                   <option value="no">No</option>
                 </select>
               </div>
 
-              <div className="md:col-span-2 mt-6 flex justify-end">
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="bg-linear-to-r from-primary to-secondary rounded-lg text-white py-3 px-8 hover:from-transparent hover:to-transparent hover:text-primary border hover:border-primary disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  {submitting ? "Sending..." : "Submit volunteer form"}
-                </button>
-              </div>
+              <button
+                type="submit"
+                disabled={submitting}
+                className="text-white w-full text-base bg-linear-to-r from-primary to-secondary font-semibold border border-transparent py-4 px-7 rounded-md hover:text-primary hover:border-primary hover:from-transparent hover:to-transparent disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {submitting ? "Sending..." : "Submit Volunteer Application"}
+              </button>
+
+              {submitError && (
+                <p className="mt-4 text-sm text-red-500 text-center">{submitError}</p>
+              )}
             </form>
-            {submitError && (
-              <p className="mt-4 text-sm text-red-500">{submitError}</p>
-            )}
           </div>
         </div>
       )}

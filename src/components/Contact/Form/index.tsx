@@ -52,8 +52,8 @@ const ContactForm = () => {
                 Contact us
               </h2>
               <p className="text-base text-muted dark:text-white/70 mb-6">
-                Charity activities are taking place around the world. Send us a
-                message and we’ll get back to you as soon as possible.
+                Whether you need support, want to volunteer, or have a question
+                about our programs, we would love to hear from you.
               </p>
               <form
                 className="flex flex-wrap w-full m-auto justify-between"
@@ -70,7 +70,7 @@ const ContactForm = () => {
                     id="name"
                     name="name"
                     required
-                    className="w-full text-base px-4 rounded-lg py-2.5 border-border dark:border-dark_border border-solid dark:text-white  dark:bg-dark border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
+                    className="w-full text-base px-4 rounded-lg py-2.5 border-border dark:border-dark_border border-solid dark:text-white dark:bg-dark border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
                     type="text"
                   />
                 </div>
@@ -85,7 +85,7 @@ const ContactForm = () => {
                     <input
                       id="phone"
                       name="phone"
-                      className="w-full text-base px-4 rounded-lg py-2.5 border-border dark:border-dark_border border-solid dark:text-white  dark:bg-dark border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
+                      className="w-full text-base px-4 rounded-lg py-2.5 border-border dark:border-dark_border border-solid dark:text-white dark:bg-dark border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
                       type="tel"
                     />
                   </div>
@@ -101,7 +101,7 @@ const ContactForm = () => {
                       name="email"
                       required
                       type="email"
-                      className="w-full text-base px-4 py-2.5 rounded-lg border-border dark:border-dark_border border-solid dark:text-white  dark:bg-dark border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
+                      className="w-full text-base px-4 py-2.5 rounded-lg border-border dark:border-dark_border border-solid dark:text-white dark:bg-dark border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
                     />
                   </div>
                 </div>
@@ -115,7 +115,7 @@ const ContactForm = () => {
                   <input
                     id="subject"
                     name="subject"
-                    className="w-full text-base px-4 rounded-lg py-2.5 border-border dark:border-dark_border border-solid dark:text-white  dark:bg-dark border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
+                    className="w-full text-base px-4 rounded-lg py-2.5 border-border dark:border-dark_border border-solid dark:text-white dark:bg-dark border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
                     type="text"
                   />
                 </div>
@@ -131,7 +131,7 @@ const ContactForm = () => {
                     name="message"
                     required
                     rows={4}
-                    className="w-full text-base px-4 rounded-lg py-2.5 border-border dark:border-dark_border border-solid dark:text-white  dark:bg-dark border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
+                    className="w-full text-base px-4 rounded-lg py-2.5 border-border dark:border-dark_border border-solid dark:text-white dark:bg-dark border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
                   />
                 </div>
                 <div className="mx-0 my-2.5 w-full">
@@ -156,7 +156,7 @@ const ContactForm = () => {
                 height={0}
                 quality={100}
                 style={{ width: "100%", height: "auto" }}
-                className="bg-no-repeat bg-contain"
+                className="bg-no-repeat bg-contain rounded-2xl"
               />
             </div>
           </div>

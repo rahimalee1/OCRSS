@@ -1,5 +1,13 @@
+"use client"
+
 import { helpdata } from "@/app/api/data";
-import Image from 'next/image';
+import { Icon } from "@iconify/react/dist/iconify.js";
+
+const helpIcons = [
+    "mdi:hand-heart-outline",
+    "mdi:cash-multiple",
+    "mdi:account-group-outline",
+];
 
 const Help = () => {
     return (
@@ -14,13 +22,11 @@ const Help = () => {
                     </p>
                     <div className="mt-20 grid grid-cols-12 gap-8">
                         {helpdata.map((item, index) => (
-                            <div key={index} className="md:col-span-4 sm:col-span-6 col-span-12 text-center flex flex-col gap-5 justify-center" data-aos="fade-up" data-aos-delay={`${index * 150}`}>
-                                <div className="flex justify-center">
-                                    <Image
-                                        src={item.icon}
-                                        alt="icon"
-                                        width={64}
-                                        height={64}
+                            <div key={index} className="md:col-span-4 sm:col-span-6 col-span-12 text-center flex flex-col gap-5 items-center justify-center" data-aos="fade-up" data-aos-delay={`${index * 150}`}>
+                                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                                    <Icon
+                                        icon={helpIcons[index] || "mdi:star-outline"}
+                                        className="text-4xl text-primary"
                                     />
                                 </div>
                                 <h4 className="text-lg font-medium">

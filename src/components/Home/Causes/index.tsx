@@ -7,15 +7,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const serviceIcons = [
-    "mdi:earth",
+    "mdi:home-group",
+    "mdi:compass-outline",
     "mdi:translate",
-    "mdi:briefcase-outline",
-    "mdi:account-group-outline",
-    "mdi:account-child-outline",
-    "mdi:school-outline",
-    "mdi:hand-heart-outline",
-    "mdi:leaf",
+    "mdi:account-heart-outline",
+    "mdi:music-note-outline",
     "mdi:handshake-outline",
+    "mdi:hand-coin-outline",
 ];
 
 const Causes = () => {

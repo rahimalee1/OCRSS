@@ -22,7 +22,7 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
                         {title}
                     </h4>
                     <p className="text-muted dark:text-white/60 text-base">
-                        by Mark Freeman / 23 May 2026
+                        by OCRSS Team {date ? `/ ${format(new Date(date), "dd MMM yyyy")}` : ""}
                     </p>
                 </div>
             </Link>

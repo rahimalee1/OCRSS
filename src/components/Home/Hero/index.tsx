@@ -25,14 +25,18 @@ const Hero = () => {
           <p className="text-muted dark:text-white/60 text-base mb-5">
             We provide settlement, education, employment, and community support services to refugees, immigrants, and newcomers in British Columbia.
           </p>
-          <div className="grid grid-cols-2 border-t border-border dark:border-dark_border mb-5">
-            <div className="col-span-1 border-r border-border dark:border-dark_border px-5 py-4">
+          <div className="grid grid-cols-3 border-t border-border dark:border-dark_border mb-5">
+            <div className="col-span-1 border-r border-border dark:border-dark_border px-4 py-4">
               <p className="text-xs text-muted dark:text-white/60 mb-1">Programs</p>
-              <h4 className="text-2xl text-secondary">10+</h4>
+              <h4 className="text-2xl text-secondary">7+</h4>
             </div>
-            <div className="col-span-1 px-5 py-4">
-              <p className="text-xs text-muted dark:text-white/60 mb-1">Families Helped</p>
-              <h4 className="text-2xl text-midnight_text dark:text-white">500+</h4>
+            <div className="col-span-1 border-r border-border dark:border-dark_border px-4 py-4">
+              <p className="text-xs text-muted dark:text-white/60 mb-1">Volunteers</p>
+              <h4 className="text-2xl text-primary">50+</h4>
+            </div>
+            <div className="col-span-1 px-4 py-4">
+              <p className="text-xs text-muted dark:text-white/60 mb-1">Events</p>
+              <h4 className="text-2xl text-midnight_text dark:text-white">20+</h4>
             </div>
           </div>
           <div className="flex justify-center gap-3">
