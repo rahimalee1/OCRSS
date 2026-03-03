@@ -99,6 +99,39 @@ body {
   background-color: var(--color-dark);
 }
 
+/* Global scrollbar – same as form modals (theme green) */
+html,
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #28cf91 #e9ecef;
+}
+.dark html,
+.dark body {
+  scrollbar-color: #28cf91 #00180f;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 8px !important;
+}
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: #e9ecef !important;
+  border-radius: 4px;
+}
+.dark html::-webkit-scrollbar-track,
+.dark body::-webkit-scrollbar-track {
+  background: #00180f !important;
+}
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: #28cf91 !important;
+  border-radius: 4px;
+}
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: #2cdd9b !important;
+}
+
 .blog-details p,
 .blog-details hr {
   @apply mb-8;
@@ -152,28 +185,28 @@ body {
   height: 100%;
 }
 
-/* Custom scrollbar for form modals (donation, membership, volunteer) */
+/* Form modals – identical to global scrollbar (#28cf91 thumb, #00180f / #e9ecef track) */
 .form-modal-scroll {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-primary) var(--color-grey);
+  scrollbar-color: #28cf91 #e9ecef;
 }
 .dark .form-modal-scroll {
-  scrollbar-color: var(--color-primary) var(--color-dark);
+  scrollbar-color: #28cf91 #00180f;
 }
 .form-modal-scroll::-webkit-scrollbar {
-  width: 8px;
+  width: 8px !important;
 }
 .form-modal-scroll::-webkit-scrollbar-track {
-  background: var(--color-grey);
+  background: #e9ecef !important;
   border-radius: 4px;
 }
 .dark .form-modal-scroll::-webkit-scrollbar-track {
-  background: var(--color-dark);
+  background: #00180f !important;
 }
 .form-modal-scroll::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
+  background: #28cf91 !important;
   border-radius: 4px;
 }
 .form-modal-scroll::-webkit-scrollbar-thumb:hover {
-  background: var(--color-darkprimary);
+  background: #2cdd9b !important;
 }
