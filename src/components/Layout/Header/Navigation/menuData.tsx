@@ -16,7 +16,7 @@ export const headerData: HeaderItem[] = [
     href: "/events",
     submenu: [
       { label: "Events list", href: "/events" },
-      { label: "Events details", href: "/events/annual-general-meeting" },
+      { label: "Events details", href: "/events/bc-safe-haven-teacher-training" },
     ],
   },
   {
