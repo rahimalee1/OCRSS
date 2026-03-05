@@ -11,7 +11,7 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
             <div className="overflow-hidden w-full h-52 flex-shrink-0">
                 <Image
                     src={coverImage}
-                    alt={title}
+                    alt={title ?? "Blog post"}
                     width={600}
                     height={208}
                     className="w-full h-full object-cover group-hover:scale-105 duration-300"
