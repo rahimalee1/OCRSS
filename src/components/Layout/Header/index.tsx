@@ -151,7 +151,7 @@ const Header: React.FC = () => {
               </Link>
             </div>
           </div>
-          <button onClick={() => donationInfo?.setIsDonationOpen(true)} className="text-error text-sm font-semibold border border-error py-4 px-7 rounded-md ml-8 hover:bg-error hover:text-white">
+          <button onClick={() => donationInfo?.setIsDonationOpen(true)} className="text-error text-sm font-semibold border border-error py-4 px-7 rounded-md ml-8 bg-transparent hover:bg-linear-to-r hover:from-error hover:to-warning hover:text-white hover:border-transparent transition-all duration-300">
             Donate now
           </button>
         </div>

@@ -18,21 +18,26 @@ const Help = () => {
                         How can you help us?
                     </h2>
                     <p className="text-muted dark:text-white/60 text-base">
-                    Support our mission through donations, funding, or volunteering.<br className="lg:block hidden" /> Together we can strengthen settlement, education, and community services for newcomers in British Columbia.
+                        Support our mission through donations, funding, or volunteering.<br className="lg:block hidden" /> Together we can strengthen settlement, education, and community services for newcomers in British Columbia.
                     </p>
-                    <div className="mt-20 grid grid-cols-12 gap-8">
+                    <div className="mt-20 grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
                         {helpdata.map((item, index) => (
-                            <div key={index} className="md:col-span-4 sm:col-span-6 col-span-12 text-center flex flex-col gap-5 items-center justify-center" data-aos="fade-up" data-aos-delay={`${index * 150}`}>
-                                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                            <div
+                                key={index}
+                                className="group bg-grey dark:bg-darkmode rounded-lg p-8 text-center flex flex-col items-center justify-center shadow-cause-shadow dark:shadow-darkmd hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-border dark:border-dark_border"
+                                data-aos="fade-up"
+                                data-aos-delay={`${index * 150}`}
+                            >
+                                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary transition-colors duration-300">
                                     <Icon
                                         icon={helpIcons[index] || "mdi:star-outline"}
-                                        className="text-4xl text-primary"
+                                        className="text-3xl text-primary group-hover:text-white transition-colors duration-300"
                                     />
                                 </div>
-                                <h4 className="text-lg font-medium">
+                                <h4 className="text-lg font-bold text-midnight_text dark:text-white group-hover:text-primary mb-3 transition-colors duration-300">
                                     {item.title}
                                 </h4>
-                                <p className="text-muted dark:text-white/60 text-base">
+                                <p className="text-muted dark:text-white/80 text-sm leading-relaxed">
                                     {item.text}
                                 </p>
                             </div>

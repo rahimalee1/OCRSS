@@ -48,8 +48,8 @@ const Testimonial = () => {
                     <Slider {...settings}>
                         {Reviews.map((item, index) => (
                             <div key={index} className="px-3 h-full" data-aos="fade-up" data-aos-delay={`${index * 180}`}>
-                                <div className="bg-white dark:bg-dark pt-12 pb-6 pr-16 pl-10 rounded-md relative h-full flex flex-col">
-                                    <div className="absolute bg-linear-to-r from-primary to-secondary py-2 pr-6 pl-24 top-11 left-0 flex">
+                                <div className="bg-white dark:bg-dark border border-border dark:border-dark_border shadow-cause-shadow dark:shadow-darkmd hover:shadow-lg hover:-translate-y-1 transition-all duration-300 rounded-xl pt-12 pb-6 pr-16 pl-10 relative h-full flex flex-col">
+                                    <div className="absolute bg-linear-to-r from-primary to-secondary py-2 pr-6 pl-24 top-11 left-0 flex rounded-r-md">
                                         <div className="relative">
                                             <UserIcon name={item.clientName} />
                                             <p className="text-white text-lg">
