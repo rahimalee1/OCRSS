@@ -125,6 +125,7 @@ const Header: React.FC = () => {
               alt="icon"
               width={32}
               height={32}
+              style={{ width: 32, height: 32 }}
             />
             <div className="">
               <p className="text-sm font-normal text-muted dark:text-white/60 mb-0">
@@ -141,6 +142,7 @@ const Header: React.FC = () => {
               alt="icon"
               width={32}
               height={32}
+              style={{ width: 32, height: 32 }}
             />
             <div className="">
               <p className="text-sm font-normal text-muted dark:text-white/60 mb-0">

@@ -31,6 +31,7 @@ const Footer: FC = () => {
                   alt="icon"
                   width={24}
                   height={24}
+                  style={{ width: 24, height: 24 }}
                 />
                 <div className="">
                   <h5 className="text-sm text-midnight_text dark:text-white mb-4">
@@ -48,6 +49,7 @@ const Footer: FC = () => {
                   alt="icon"
                   width={24}
                   height={24}
+                  style={{ width: 24, height: 24 }}
                 />
                 <div className="">
                   <Link
@@ -65,6 +67,7 @@ const Footer: FC = () => {
                   alt="icon"
                   width={24}
                   height={24}
+                  style={{ width: 24, height: 24 }}
                 />
                 <div className="">
                   <Link
