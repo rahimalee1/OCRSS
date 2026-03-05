@@ -77,7 +77,7 @@ const Page = () => {
               className="text-2xl font-semibold mb-3"
               data-aos="fade-up"
             >
-              Our Purpose
+              Our Mission
             </h3>
             <p
               className="text-base text-muted dark:text-white/60"
@@ -86,8 +86,7 @@ const Page = () => {
             >
               We exist to provide social, educational, employment, and
               settlement services to Oromo refugees and immigrants, without
-              excluding other cultural communities. Guided by our constitution,
-              we promote cultural understanding and Canadian multiculturalism,
+              excluding other cultural communities. We promote cultural understanding and Canadian multiculturalism,
               seek support to expand opportunities and social development, and
               work closely with other organizations to build an inclusive,
               welcoming community in British Columbia.

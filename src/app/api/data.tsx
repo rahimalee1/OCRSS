@@ -48,7 +48,7 @@ export const ServiceData: ServiceItem[] = [
       "Support with furnishing and settling into a new home.",
     ],
     detail:
-      "In accordance with our constitutional purpose to provide settlement services, OCRSS helps newly arrived refugees and immigrants secure safe, affordable housing. Our settlement workers guide families through the rental process, explain tenant rights and responsibilities, and connect them with subsidized housing programs where available. We also coordinate furniture donations and household essentials so that families can settle into their new homes with dignity. For those in crisis, we provide referrals to emergency shelters and transitional housing services.",
+      "In line with our mission to provide settlement services, OCRSS helps newly arrived refugees and immigrants secure safe, affordable housing. Our settlement workers guide families through the rental process, explain tenant rights and responsibilities, and connect them with subsidized housing programs where available. We also coordinate furniture donations and household essentials so that families can settle into their new homes with dignity. For those in crisis, we provide referrals to emergency shelters and transitional housing services.",
   },
   {
     image: "/images/causes/cause-2.jpg",
@@ -63,7 +63,7 @@ export const ServiceData: ServiceItem[] = [
       "Information sessions on legal rights, workplace standards, and community resources.",
     ],
     detail:
-      "Our Constitution directs OCRSS to assist newcomers with orientation and Canadian life skills. We offer comprehensive orientation sessions that cover everything a newly arrived family needs to know \u2014 from how to access healthcare and enrol children in school, to understanding the public transit system, opening a bank account, and knowing their legal rights. Each participant receives a personalized settlement plan that respects their unique background while building the knowledge and confidence needed to navigate life in British Columbia independently.",
+      "OCRSS assists newcomers with orientation and Canadian life skills. We offer comprehensive orientation sessions that cover everything a newly arrived family needs to know \u2014 from how to access healthcare and enrol children in school, to understanding the public transit system, opening a bank account, and knowing their legal rights. Each participant receives a personalized settlement plan that respects their unique background while building the knowledge and confidence needed to navigate life in British Columbia independently.",
   },
   {
     image: "/images/causes/cause-3.jpg",
@@ -93,7 +93,7 @@ export const ServiceData: ServiceItem[] = [
       "Workshops on navigating cultural differences in workplaces, schools, and neighbourhoods.",
     ],
     detail:
-      "Our Constitution commits OCRSS to promoting community development, cultural understanding, and the Canadian multiculturalism concept. We believe that successful integration means embracing Canadian values while honouring one\u2019s cultural heritage. Our cultural lifestyle programs help newcomers understand Canadian social norms, workplace culture, and community expectations, while also creating spaces where they can practise and share their own traditions. Through cross-cultural dialogue events and community forums, we foster mutual respect and understanding across all backgrounds.",
+      "OCRSS promotes community development, cultural understanding, and the Canadian multiculturalism concept. We believe that successful integration means embracing Canadian values while honouring one\u2019s cultural heritage. Our cultural lifestyle programs help newcomers understand Canadian social norms, workplace culture, and community expectations, while also creating spaces where they can practise and share their own traditions. Through cross-cultural dialogue events and community forums, we foster mutual respect and understanding across all backgrounds.",
   },
   {
     image: "/images/causes/cause-5.jpg",
@@ -138,7 +138,7 @@ export const ServiceData: ServiceItem[] = [
       "Transparent reporting on how funds are used to serve the community.",
     ],
     detail:
-      "Sustainable funding is essential to our mission. OCRSS actively seeks private and government support to enhance opportunities and social development for our community, as directed by our Constitution. We organize community fundraising events, submit grant proposals to government agencies and private foundations, and build partnerships with businesses that share our values. Every dollar raised goes directly toward programs that help refugees and newcomers settle, learn, work, and thrive. We are committed to transparency and accountability in how we manage and report on community funds.",
+      "Sustainable funding is essential to our mission. OCRSS actively seeks private and government support to enhance opportunities and social development for our community, We organize community fundraising events, submit grant proposals to government agencies and private foundations, and build partnerships with businesses that share our values. Every dollar raised goes directly toward programs that help refugees and newcomers settle, learn, work, and thrive. We are committed to transparency and accountability in how we manage and report on community funds.",
   },
 ];
 

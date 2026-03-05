@@ -23,31 +23,45 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem }> = ({ item }) => {
 
   return (
     <div className="relative w-full">
-      <Link
-        href={item.submenu ? "#" : item.href}
-        onClick={item.submenu ? (e) => { e.preventDefault(); handleToggle(); } : undefined}
-        className={`flex items-center justify-between w-full py-2 px-3 text-black rounded-md dark:text-white/60 focus:outline-hidden  ${path.startsWith(`/${navString}`) ? "bg-primary! text-white!" : null} ${path === item.href ? "bg-primary! text-white! " : ""
-          }`}
+      <div
+        className={`flex items-center justify-between w-full py-2 px-3 rounded-md ${path.startsWith(`/${navString}`) ? "bg-primary! text-white!" : null} ${path === item.href ? "bg-primary! text-white!" : ""}`}
       >
-        {item.label}
+        <Link
+          href={item.href}
+          className={`flex-1 text-black dark:text-white/60 focus:outline-hidden ${path.startsWith(`/${navString}`) ? "text-white!" : ""} ${path === item.href ? "text-white!" : ""}`}
+        >
+          {item.label}
+        </Link>
         {item.submenu && (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1.5em"
-            height="1.5em"
-            viewBox="0 0 24 24"
+          <button
+            type="button"
+            onClick={(e) => {
+              e.preventDefault();
+              handleToggle();
+            }}
+            className="p-1 -mr-1 text-black dark:text-white/60 focus:outline-hidden touch-manipulation"
+            aria-expanded={submenuOpen}
+            aria-label={submenuOpen ? "Close submenu" : "Open submenu"}
           >
-            <path
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-              d="m7 10l5 5l5-5"
-            />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1.5em"
+              height="1.5em"
+              viewBox="0 0 24 24"
+              className={`transition-transform ${submenuOpen ? "rotate-180" : ""}`}
+            >
+              <path
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+                d="m7 10l5 5l5-5"
+              />
+            </svg>
+          </button>
         )}
-      </Link>
+      </div>
       {submenuOpen && item.submenu && (
         <div className="bg-white dark:bg-dark p-2 w-full">
           {item.submenu.map((subItem, index) => (

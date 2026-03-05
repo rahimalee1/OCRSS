@@ -73,7 +73,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Mission / Constitutional Purposes */}
+      {/* Our Mission */}
       <section className="lg:py-28 py-16 bg-grey dark:bg-darkmode">
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">
           <div className="text-center mb-16">

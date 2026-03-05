@@ -27,16 +27,6 @@ const ServiceDetail = () => {
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4">
           <div className="grid grid-cols-12 gap-8">
             <div className="lg:col-span-8 col-span-12">
-              <div className="rounded-lg overflow-hidden mb-8">
-                <Image
-                  src={service.image}
-                  alt={service.title}
-                  width={870}
-                  height={500}
-                  className="w-full h-auto object-cover"
-                  quality={100}
-                />
-              </div>
               <h1 className="text-[40px] leading-tight font-semibold mb-4">
                 {service.title}
               </h1>

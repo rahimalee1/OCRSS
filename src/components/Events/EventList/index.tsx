@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Icon } from "@iconify/react";
 import { Eventdata } from "@/app/api/data";
 import { format } from "date-fns";
 
@@ -8,49 +7,42 @@ const EventList = () => {
   return (
     <section className="lg:py-28 py-16 dark:bg-dark">
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">
-        <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7">
           {Eventdata.map((item, index) => (
-            <Link key={index} href={`/events/${item.slug}`} className="group" data-aos="fade-up" data-aos-delay={`${index * 120}`}>
-              <div className="relative overflow-hidden mb-8">
+            <div key={index} className="w-full flex" data-aos="fade-up" data-aos-delay={index * 100}>
+              <Link
+                href={`/events/${item.slug}`}
+                className="group flex flex-col h-full w-full rounded-xl overflow-hidden shadow-cause-shadow dark:shadow-darkmd bg-white dark:bg-dark border border-border dark:border-dark_border hover:shadow-lg transition-shadow duration-300"
+              >
+              <div className="overflow-hidden w-full h-52 flex-shrink-0">
                 <Image
                   src={item.image}
-                  alt="image"
-                  width={350}
-                  height={200}
-                  className="w-full h-[200px] object-cover group-hover:scale-110 duration-300 scale-[1.01]" 
+                  alt={item.title}
+                  width={600}
+                  height={208}
+                  className="w-full h-full object-cover group-hover:scale-105 duration-300"
                 />
-                <div className="px-3 py-2 bg-linear-to-r from-primary to-secondary absolute z-1 top-3 right-3 rounded-sm">
-                  <p className="text-white text-sm mb-0 text-center">
-                    {isNaN(new Date(item.date).getTime()) ? (
-                      <span className="block text-sm leading-tight py-1">{item.date}</span>
-                    ) : (
-                      <>
-                        <span className="block">
-                          {format(new Date(item.date), "MMM")}
-                        </span>
-                        <span className="block text-2xl">
-                          {format(new Date(item.date), "dd")}
-                        </span>
-                      </>
-                    )}
-                  </p>
-                </div>
               </div>
-              <h4 className="text-lg font-medium mb-6 group-hover:text-primary">
-                {item.title}
-              </h4>
-              <p className="text-muted dark:text-white/60 text-base mb-6">{item.text}</p>
-              <h5 className="text-error hover:text-warning text-base font-medium flex gap-3 items-center w-fit">
-                Learn More
-                <span>
-                  <Icon
-                    icon="solar:arrow-right-linear"
-                    width="20"
-                    height="20"
-                  />
+              <div className="flex flex-col flex-1 p-5">
+                <span className="text-sm text-gray-400 dark:text-white/50 mb-2">
+                  {isNaN(new Date(item.date).getTime())
+                    ? item.date
+                    : format(new Date(item.date), "MMM dd yyyy")}
                 </span>
-              </h5>
+                <h4 className="text-base leading-snug font-semibold text-midnight_text dark:text-white mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                  {item.title}
+                </h4>
+                <p className="text-xs text-muted dark:text-white/50 mb-4">{item.text}</p>
+                <p className="text-primary text-sm font-medium mt-auto flex items-center gap-1">
+                  Learn More
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14"/>
+                    <path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </p>
+              </div>
             </Link>
+            </div>
           ))}
         </div>
       </div>

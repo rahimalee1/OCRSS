@@ -59,6 +59,11 @@ const Header: React.FC = () => {
     }
   }, [navbarOpen]);
 
+  // Close mobile menu when route changes (e.g. after tapping Services/Events/Blog)
+  useEffect(() => {
+    setNavbarOpen(false);
+  }, [pathUrl]);
+
   const donationInfo = useContext(DonationFormContext);
 
   return (

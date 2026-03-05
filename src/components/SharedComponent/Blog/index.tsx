@@ -23,9 +23,9 @@ const Blog: React.FC = () => {
                         </span>
                     </Link>
                 </div>
-                <div className="grid grid-cols-12 gap-7">
+                <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7">
                     {posts.map((blog, i) => (
-                        <div key={i} className="w-full md:col-span-4 col-span-6" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                        <div key={i} className="w-full flex" data-aos="fade-up" data-aos-delay={i * 100} data-aos-duration="1000">
                             <BlogCard blog={blog} />
                         </div>
                     ))}

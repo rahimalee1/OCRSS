@@ -8,9 +8,9 @@ const BlogList: React.FC = () => {
     return (
         <section className="flex flex-wrap justify-center lg:py-24 py-16 dark:bg-dark" id="blog">
             <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4">
-                <div className="grid md:grid-cols-2 grid-cols-1 gap-7">
+                <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-7">
                     {posts.map((blog, i) => (
-                        <div key={i} className="w-full" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                        <div key={i} className="w-full flex" data-aos="fade-up" data-aos-delay={i * 100} data-aos-duration="1000">
                             <BlogCard blog={blog} />
                         </div>
                     ))}
