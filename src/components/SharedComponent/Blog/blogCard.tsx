@@ -8,13 +8,12 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
     const { title, coverImage, excerpt, date, slug } = blog;
     return (
         <Link href={`/blog/${slug}`} className="group flex flex-col h-full rounded-xl overflow-hidden shadow-cause-shadow dark:shadow-darkmd bg-white dark:bg-dark border border-border dark:border-dark_border hover:shadow-lg transition-shadow duration-300">
-            <div className="overflow-hidden w-full h-52 flex-shrink-0">
+            <div className="relative overflow-hidden w-full h-52 flex-shrink-0">
                 <Image
                     src={coverImage}
                     alt={title ?? "Blog post"}
-                    width={600}
-                    height={208}
-                    className="w-full h-full object-cover group-hover:scale-105 duration-300"
+                    fill
+                    className="object-contain object-center group-hover:scale-105 duration-300"
                 />
             </div>
             <div className="flex flex-col flex-1 p-5">

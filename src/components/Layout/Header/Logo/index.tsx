@@ -2,24 +2,25 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const Logo: React.FC = () => {
-
   return (
     <Link href="/">
       <Image
         src="/images/logo/logo-white.png"
-        alt="logo"
-        width={160}
-        height={50}
+        alt="Oromocultural Resettlement Services Society"
+        width={800}
+        height={274}
         quality={100}
-        className='dark:hidden max-h-14 w-auto'
+        className="dark:hidden"
+        style={{ height: '75px', width: '250px' }}
       />
       <Image
-        src="/images/logo/logo.png"
-        alt="logo"
-        width={160}
-        height={50}
+        src="/images/logo/ocrss.png"
+        alt="Oromocultural Resettlement Services Society"
+        width={800}
+        height={274}
         quality={100}
-        className='dark:block hidden max-h-14 w-auto'
+        className="hidden dark:block"
+        style={{ height: '75px', width: '250px' }}
       />
     </Link>
   );

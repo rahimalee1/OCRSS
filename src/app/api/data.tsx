@@ -36,7 +36,7 @@ export interface ServiceItem {
 
 export const ServiceData: ServiceItem[] = [
   {
-    image: "/images/causes/cause-1.jpg",
+    image: "/images/services/housingsupport.png",
     title: "Housing Support",
     slug: "housing-support",
     subtitle:
@@ -51,7 +51,7 @@ export const ServiceData: ServiceItem[] = [
       "In line with our mission to provide settlement services, OCRSS helps newly arrived refugees and immigrants secure safe, affordable housing. Our settlement workers guide families through the rental process, explain tenant rights and responsibilities, and connect them with subsidized housing programs where available. We also coordinate furniture donations and household essentials so that families can settle into their new homes with dignity. For those in crisis, we provide referrals to emergency shelters and transitional housing services.",
   },
   {
-    image: "/images/causes/cause-2.jpg",
+    image: "/images/services/orientation.png",
     title: "Orientation for Newcomers",
     slug: "orientation-for-newcomers",
     subtitle:
@@ -66,7 +66,7 @@ export const ServiceData: ServiceItem[] = [
       "OCRSS assists newcomers with orientation and Canadian life skills. We offer comprehensive orientation sessions that cover everything a newly arrived family needs to know \u2014 from how to access healthcare and enrol children in school, to understanding the public transit system, opening a bank account, and knowing their legal rights. Each participant receives a personalized settlement plan that respects their unique background while building the knowledge and confidence needed to navigate life in British Columbia independently.",
   },
   {
-    image: "/images/causes/cause-3.jpg",
+    image: "/images/services/immigration.png",
     title: "Language Support",
     slug: "language-support",
     subtitle:
@@ -81,7 +81,7 @@ export const ServiceData: ServiceItem[] = [
       "Language barriers are one of the most significant challenges facing newcomers. OCRSS provides professional interpretation and translation services for medical appointments, legal consultations, school meetings, and government interactions. We also connect families with English as a Second Language (ESL) programs and provide in-house language support to help adults and youth build everyday communication skills. Our goal is to ensure that no one is unable to access the services they need simply because of a language gap.",
   },
   {
-    image: "/images/causes/cause-4.jpg",
+    image: "/images/services/culture.jpg",
     title: "Cultural Lifestyle Support",
     slug: "cultural-lifestyle-support",
     subtitle:
@@ -96,7 +96,7 @@ export const ServiceData: ServiceItem[] = [
       "OCRSS promotes community development, cultural understanding, and the Canadian multiculturalism concept. We believe that successful integration means embracing Canadian values while honouring one\u2019s cultural heritage. Our cultural lifestyle programs help newcomers understand Canadian social norms, workplace culture, and community expectations, while also creating spaces where they can practise and share their own traditions. Through cross-cultural dialogue events and community forums, we foster mutual respect and understanding across all backgrounds.",
   },
   {
-    image: "/images/causes/cause-5.jpg",
+    image: "/images/services/cultural%20festival.png",
     title: "Traditional & Cultural Activities",
     slug: "traditional-cultural-activities",
     subtitle:
@@ -111,7 +111,7 @@ export const ServiceData: ServiceItem[] = [
       "OCRSS organizes traditional and cultural activities that keep Oromo heritage alive within the diaspora community. From cultural shows and traditional food festivals to heritage language classes for the next generation, our programs ensure that newcomers can stay connected to their roots while building a new life in Canada. These events also serve as bridges between communities \u2014 inviting all British Columbians to learn about, appreciate, and celebrate the rich traditions of the Oromo people.",
   },
   {
-    image: "/images/causes/cause-6.jpg",
+    image: "/images/services/charity.jpg",
     title: "Sponsorship Programs",
     slug: "sponsorship-programs",
     subtitle:
@@ -126,7 +126,7 @@ export const ServiceData: ServiceItem[] = [
       "OCRSS works closely with community groups, faith organizations, and individuals who wish to sponsor refugee families coming to Canada. We provide guidance on the private sponsorship process, help form sponsorship groups, and coordinate between sponsors and arriving families to ensure a warm, well-prepared welcome. Once families arrive, our settlement workers provide ongoing support \u2014 from housing and orientation to language services and employment guidance \u2014 so that every sponsored family has the foundation they need to succeed.",
   },
   {
-    image: "/images/causes/cause-7.jpg",
+    image: "/images/services/fundraiser.png",
     title: "Fundraising Programs",
     slug: "fundraising-programs",
     subtitle:
