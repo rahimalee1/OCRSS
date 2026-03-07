@@ -42,36 +42,25 @@ export const Donation = () => {
     const anonymous = formData.get("anonymous") === "on";
 
     try {
-      const res = await fetch("/api/donation", {
+      const res = await fetch("/api/stripe/checkout", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          amount,
-          anonymous,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ firstName, lastName, email, amount, anonymous }),
       });
 
+      const data = await res.json().catch(() => ({}));
+
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Failed to submit donation");
+        throw new Error(data.error || "Failed to initiate payment");
       }
 
-      toast.success("Thank you! Your donation details have been sent successfully.");
-      formRef.current?.reset();
-      setDonationAmount(null);
-      if (inputRef.current) {
-        inputRef.current.value = "";
+      if (data.url) {
+        window.location.href = data.url;
       }
     } catch (error: any) {
       const message = error.message || "Something went wrong. Please try again.";
       setSubmitError(message);
       toast.error(message);
-    } finally {
       setSubmitting(false);
     }
   };
@@ -196,7 +185,7 @@ export const Donation = () => {
           disabled={submitting}
           className="text-white w-full text-base bg-linear-to-r from-primary to-secondary font-semibold border border-transparent py-4 px-7 rounded-md hover:text-primary hover:border-primary hover:from-transparent hover:to-transparent disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          {submitting ? "Sending..." : "Donate now"}
+          {submitting ? "Redirecting to payment..." : "Proceed to Payment →"}
         </button>
         {submitError && (
           <p className="mt-4 text-sm text-red-500 text-center">{submitError}</p>
