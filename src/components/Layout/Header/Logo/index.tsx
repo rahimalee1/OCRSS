@@ -10,8 +10,7 @@ const Logo: React.FC = () => {
         width={800}
         height={274}
         quality={100}
-        className="dark:hidden"
-        style={{ height: '75px', width: '250px' }}
+        className="dark:hidden h-16 w-[200px] lg:h-[80px] lg:w-[250px]"
       />
       <Image
         src="/images/logo/ocrss.png"
@@ -19,8 +18,7 @@ const Logo: React.FC = () => {
         width={800}
         height={274}
         quality={100}
-        className="hidden dark:block"
-        style={{ height: '75px', width: '250px' }}
+        className="hidden dark:block h-16 w-[200px] lg:h-[80px] lg:w-[250px]"
       />
     </Link>
   );

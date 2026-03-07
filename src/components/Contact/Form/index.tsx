@@ -46,7 +46,7 @@ const ContactForm = () => {
     <>
       <section id="contact-form" className="dark:bg-dark pb-24">
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4">
-          <div className="grid lg:grid-cols-12 grid-cols-1 gap-8 items-center">
+          <div className="grid lg:grid-cols-12 grid-cols-1 gap-8 items-stretch">
             <div className="lg:col-span-6 lg:order-1 order-2">
               <h2 className="max-w-72 text-[40px] leading-tight font-bold mb-4 text-midnight_text dark:text-white">
                 Contact us
@@ -148,15 +148,13 @@ const ContactForm = () => {
                 )}
               </form>
             </div>
-            <div className="lg:col-span-6 lg:order-2 order-1">
+            <div className="lg:col-span-6 lg:order-2 order-1 relative min-h-[500px] h-full">
               <Image
-                src="/images/contact-page/contact.jpg"
+                src="/images/services/housing.png"
                 alt="Contact"
-                width={1300}
-                height={0}
+                fill
                 quality={100}
-                style={{ width: "100%", height: "auto" }}
-                className="bg-no-repeat bg-contain rounded-2xl"
+                className="object-cover object-center rounded-2xl"
               />
             </div>
           </div>

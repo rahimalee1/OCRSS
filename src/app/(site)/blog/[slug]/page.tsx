@@ -94,15 +94,12 @@ export default async function Post({ params }: any) {
               </h2>
             </div>
             <div className="flex items-center md:justify-center justify-start gap-6 col-span-4 pt-4 md:pt-0">
-              <Image
-                src={post.authorImage}
-                alt="image"
-                className="bg-no-repeat bg-contain inline-block rounded-full w-20! h-20!"
-                width={40}
-                height={40}
-                layout="responsive"
-                quality={100}
-              />
+              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="8" r="4" fill="#2cdd9b"/>
+                  <path d="M4 20c0-4 3.582-7 8-7s8 3 8 7" stroke="#2cdd9b" strokeWidth="1.8" strokeLinecap="round"/>
+                </svg>
+              </div>
               <div className="">
                 <span className="text-[22px] leading-tight font-bold text-midnight_text dark:text-white">OCRSS Team</span>
                 <p className="text-xl text-gray dark:text-white">Author</p>

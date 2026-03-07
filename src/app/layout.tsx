@@ -24,8 +24,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/images/logo/favicon.ico" />
-        <link rel="icon" href="/images/logo/favicon.png" type="image/png" />
+        <link rel="icon" href="/images/logo/favico.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/images/logo/favico.ico" />
       </head>
       <body className={montserrat.className}>
       <NextTopLoader color="#FF4D7E" shadow={false} zIndex={40} />

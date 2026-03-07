@@ -24,17 +24,17 @@ const Help = () => {
                         {helpdata.map((item, index) => (
                             <div
                                 key={index}
-                                className="group bg-grey dark:bg-darkmode rounded-lg p-8 text-center flex flex-col items-center justify-center shadow-cause-shadow dark:shadow-darkmd hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-border dark:border-dark_border"
+                                className="group bg-grey dark:bg-darkmode rounded-lg p-8 text-center flex flex-col items-center justify-center shadow-cause-shadow dark:shadow-darkmd hover:shadow-xl active:shadow-xl hover:-translate-y-1 active:-translate-y-1 transition-all duration-300 border border-border dark:border-dark_border"
                                 data-aos="fade-up"
                                 data-aos-delay={`${index * 150}`}
                             >
-                                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary transition-colors duration-300">
+                                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary group-active:bg-primary transition-colors duration-300">
                                     <Icon
                                         icon={helpIcons[index] || "mdi:star-outline"}
-                                        className="text-3xl text-primary group-hover:text-white transition-colors duration-300"
+                                        className="text-3xl text-primary group-hover:text-white group-active:text-white transition-colors duration-300"
                                     />
                                 </div>
-                                <h4 className="text-lg font-bold text-midnight_text dark:text-white group-hover:text-primary mb-3 transition-colors duration-300">
+                                <h4 className="text-lg font-bold text-midnight_text dark:text-white group-hover:text-primary group-active:text-primary mb-3 transition-colors duration-300">
                                     {item.title}
                                 </h4>
                                 <p className="text-muted dark:text-white/80 text-sm leading-relaxed">
