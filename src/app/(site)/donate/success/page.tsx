@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function DonateSuccessPage() {
+function DonateSuccessContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const sessionId = searchParams.get("session_id");
@@ -63,7 +63,6 @@ export default function DonateSuccessPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-grey dark:bg-darkmode px-4">
       <div className="max-w-lg w-full text-center bg-white dark:bg-dark_card rounded-2xl shadow-xl p-10">
-        {/* Success icon */}
         <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
           <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24">
             <path fill="#2cdd9b" fillRule="evenodd" d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Zm-5.97-3.03a.75.75 0 0 1 0 1.06l-5 5a.75.75 0 0 1-1.06 0l-2-2a.75.75 0 1 1 1.06-1.06L10.5 13.44l4.47-4.47a.75.75 0 0 1 1.06 0Z" clipRule="evenodd"/>
@@ -90,20 +89,26 @@ export default function DonateSuccessPage() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link
-            href="/"
-            className="bg-primary text-white font-semibold px-8 py-3 rounded-lg hover:opacity-90 transition"
-          >
+          <Link href="/" className="bg-primary text-white font-semibold px-8 py-3 rounded-lg hover:opacity-90 transition">
             Return Home
           </Link>
-          <Link
-            href="/about"
-            className="border border-border dark:border-dark_border text-midnight_text dark:text-white font-semibold px-8 py-3 rounded-lg hover:border-primary hover:text-primary transition"
-          >
+          <Link href="/about" className="border border-border dark:border-dark_border text-midnight_text dark:text-white font-semibold px-8 py-3 rounded-lg hover:border-primary hover:text-primary transition">
             Learn About Us
           </Link>
         </div>
       </div>
     </div>
+  );
+}
+
+export default function DonateSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-grey dark:bg-darkmode">
+        <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+      </div>
+    }>
+      <DonateSuccessContent />
+    </Suspense>
   );
 }
