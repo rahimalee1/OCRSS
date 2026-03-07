@@ -28,8 +28,8 @@ export async function POST(request: Request) {
     }
 
     const transporter = createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
+      host: process.env.SMTP_HOST || "smtp.titan.email",
+      port: Number(process.env.SMTP_PORT) || 465,
       secure: true,
       auth: {
         user: process.env.SMTP_USER,

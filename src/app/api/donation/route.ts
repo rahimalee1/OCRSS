@@ -34,8 +34,8 @@ export async function POST(request: Request) {
     }
 
     const transporter = createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
+      host: process.env.SMTP_HOST || "smtp.titan.email",
+      port: Number(process.env.SMTP_PORT) || 465,
       secure: true,
       auth: {
         user: process.env.SMTP_USER,
@@ -58,7 +58,7 @@ export async function POST(request: Request) {
       from:
         process.env.SMTP_FROM ||
         `"Oromo Cultural" <${process.env.SMTP_USER || "no-reply@example.com"}>`,
-      to: process.env.DONATION_TO_EMAIL || "rahimgilal1@gmail.com",
+      to: process.env.DONATION_TO_EMAIL || process.env.SMTP_USER,
       subject: "New Donation Submission",
       text: messageLines.join("\n"),
     });
