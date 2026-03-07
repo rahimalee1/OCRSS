@@ -99,14 +99,14 @@ export async function POST(request: Request) {
       field("Donation Amount", `$${amount}`) +
       field("Anonymous", anonymous ? "Yes" : "No");
 
-    await transporter.sendMail({
+    await transporter.sendMail(({
       from:
         process.env.SMTP_FROM ||
         `"Oromo Cultural" <${process.env.SMTP_USER || "no-reply@example.com"}>`,
       to: process.env.DONATION_TO_EMAIL || process.env.SMTP_USER,
       subject: "💚 New Donation Submission",
       html: emailHtml("New Donation Submission", "Donation Form", "#2cdd9b", rows),
-    });
+    } as any));
 
     return NextResponse.json({ ok: true });
   } catch (error: any) {

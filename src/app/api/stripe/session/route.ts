@@ -3,7 +3,7 @@ import Stripe from "stripe";
 import { createTransport } from "nodemailer";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2025-01-27.acacia",
+  apiVersion: "2026-02-25.clover",
 });
 
 function emailHtml(firstName: string, lastName: string, email: string, amount: string, anonymous: string) {
@@ -98,12 +98,12 @@ export async function GET(request: Request) {
           },
         });
 
-        await transporter.sendMail({
+        await transporter.sendMail(({
           from: process.env.SMTP_FROM || `"Oromo Cultural" <${process.env.SMTP_USER}>`,
           to: process.env.DONATION_TO_EMAIL || process.env.SMTP_USER,
           subject: "💚 New Donation Received (Payment Confirmed)",
           html: emailHtml(firstName || "", lastName || "", email || session.customer_email || "", amount || "", anonymous || "false"),
-        });
+        } as any));
       } catch (emailErr) {
         console.error("Failed to send donation notification email", emailErr);
       }

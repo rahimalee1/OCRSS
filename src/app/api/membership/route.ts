@@ -132,14 +132,14 @@ export async function POST(request: Request) {
         field("Employment", employment || "N/A")
       );
 
-    await transporter.sendMail({
+    await transporter.sendMail(({
       from:
         process.env.SMTP_FROM ||
         `"Oromo Cultural" <${process.env.SMTP_USER || "no-reply@example.com"}>`,
       to: process.env.MEMBERSHIP_TO_EMAIL || process.env.DONATION_TO_EMAIL || process.env.SMTP_USER,
       subject: "🤝 New Membership Submission",
       html: emailHtml("New Membership Submission", "Membership Form", "#8b5cf6", rows),
-    });
+    } as any));
 
     return NextResponse.json({ ok: true });
   } catch (error: any) {

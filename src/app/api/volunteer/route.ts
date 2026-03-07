@@ -156,7 +156,7 @@ export async function POST(request: Request) {
         field("Future Communication Consent", futureCommunicationConsent || "N/A")
       );
 
-    await transporter.sendMail({
+    await transporter.sendMail(({
       from:
         process.env.SMTP_FROM ||
         `"Oromo Cultural" <${process.env.SMTP_USER || "no-reply@example.com"}>`,
@@ -167,7 +167,7 @@ export async function POST(request: Request) {
         process.env.SMTP_USER,
       subject: "🙋 New Volunteer Submission",
       html: emailHtml("New Volunteer Submission", "Volunteer Form", "#f59e0b", rows),
-    });
+    } as any));
 
     return NextResponse.json({ ok: true });
   } catch (error: any) {

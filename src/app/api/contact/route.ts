@@ -90,7 +90,7 @@ export async function POST(request: Request) {
       field("Subject", subject || "N/A") +
       field("Message", message, true);
 
-    await transporter.sendMail({
+    await transporter.sendMail(({
       from:
         process.env.SMTP_FROM ||
         `"Oromo Cultural" <${process.env.SMTP_USER || "no-reply@example.com"}>`,
@@ -100,7 +100,7 @@ export async function POST(request: Request) {
         process.env.SMTP_USER,
       subject: `✉️ New Contact Message: ${subject || "No Subject"}`,
       html: emailHtml("New Contact Message", "Contact Form", "#3b82f6", rows),
-    });
+    } as any));
 
     return NextResponse.json({ ok: true });
   } catch (error: any) {
