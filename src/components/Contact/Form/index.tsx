@@ -150,8 +150,8 @@ const ContactForm = () => {
             </div>
             <div className="lg:col-span-6 lg:order-2 order-1 relative min-h-[500px] h-full">
               <Image
-                src="/images/services/housing.png"
-                alt="Contact"
+                src="/images/contact-page/contactus.jpg"
+                alt="Contact us"
                 fill
                 quality={100}
                 className="object-cover object-center rounded-2xl"
