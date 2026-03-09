@@ -14,7 +14,7 @@ const Page = () => {
   return (
     <>
       <HeroSub title="Our Services" />
-      <section className="lg:py-28 py-16 dark:bg-dark">
+      <section className="lg:pt-16 lg:pb-28 pt-10 pb-16 dark:bg-dark">
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-3xl font-medium mb-4" data-aos="fade-up">

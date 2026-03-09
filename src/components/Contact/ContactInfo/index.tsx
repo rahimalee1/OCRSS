@@ -56,60 +56,51 @@ const ContactInfo = () => {
 
   return (
     <>
-      <section className="dark:bg-dark pt-8 lg:pb-24 pb-16">
+      <section className="dark:bg-dark py-12 lg:py-16">
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4">
-          <div className="flex md:flex-row flex-col lg:items-center items-start justify-center md:gap-28 gap-8">
-            <div className="flex sm:flex-row flex-col items-start sm:gap-8 gap-4">
-              <div className="bg-grey dark:bg-midnight_text w-3.75 h-3.75 flex items-center justify-center rounded-full p-[15px]">
-                <i className="bg-[url('/images/contact-page/email.svg')] bg-no-repeat bg-contain w-9 h-9 inline-block"></i>
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-8 md:gap-12 lg:gap-20 max-w-4xl mx-auto">
+            {/* Email Us Card */}
+            <div className="group bg-grey dark:bg-darkmode rounded-lg p-8 text-center flex flex-col items-center justify-center shadow-cause-shadow dark:shadow-darkmd hover:shadow-xl active:shadow-xl hover:-translate-y-1 active:-translate-y-1 transition-all duration-300 border border-border dark:border-dark_border">
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary group-active:bg-primary transition-colors duration-300">
+                <Icon icon="mdi:email-outline" className="text-3xl text-primary group-hover:text-white group-active:text-white transition-colors duration-300" />
               </div>
-              <div className="flex md:flex-col sm:flex-row flex-col md:items-start sm:items-center items-start h-full justify-between">
-                <div>
-                  <span className="text-midnight_text dark:text-white text-xl font-bold">
-                    Email us
-                  </span>
-                  <p className="text-DeepOcean font-normal max-w-80 pt-3 pb-7 dark:text-white/50 text-base">
-                    Please feel free to drop us a line. We will respond as soon as
-                    possible.
-                  </p>
-                </div>
-                <div>
-                  <a
-                    href="https://mail.google.com/mail/?view=cm&fs=1&to=oromocultural@gmail.com&su=Inquiry%20from%20Website"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary text-base font-medium flex items-center gap-3 group hover:text-midnight_text dark:hover:text-white cursor-pointer"
-                  >
-                    Leave a message
-                    <Icon icon="mdi:arrow-right" className="text-xl text-primary group-hover:text-midnight_text dark:group-hover:text-white transition-colors" />
-                  </a>
-                </div>
-              </div>
+              <h4 className="text-lg font-bold text-midnight_text dark:text-white group-hover:text-primary group-active:text-primary mb-3 transition-colors duration-300">
+                Email Us
+              </h4>
+              <p className="text-muted dark:text-white/80 text-sm leading-relaxed mb-5">
+                Please feel free to drop us a line. We will respond as soon as possible.
+              </p>
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=oromocultural@gmail.com&su=Inquiry%20from%20Website"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary text-sm font-medium flex items-center gap-2 group-hover:text-midnight_text dark:group-hover:text-white transition-colors"
+              >
+                Leave a message
+                <Icon icon="mdi:arrow-right" className="text-lg" />
+              </a>
             </div>
-            <div className="flex sm:flex-row flex-col items-start sm:gap-8 gap-4">
-              <div className="bg-grey dark:bg-midnight_text w-3.75 h-3.75 flex items-center justify-center rounded-full">
-                <i className="bg-[url('/images/contact-page/career.svg')] bg-no-repeat bg-contain w-9 h-9 inline-block"></i>
+
+            {/* Volunteer Card */}
+            <div className="group bg-grey dark:bg-darkmode rounded-lg p-8 text-center flex flex-col items-center justify-center shadow-cause-shadow dark:shadow-darkmd hover:shadow-xl active:shadow-xl hover:-translate-y-1 active:-translate-y-1 transition-all duration-300 border border-border dark:border-dark_border">
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary group-active:bg-primary transition-colors duration-300">
+                <Icon icon="mdi:account-group-outline" className="text-3xl text-primary group-hover:text-white group-active:text-white transition-colors duration-300" />
               </div>
-              <div className="flex md:flex-col sm:flex-row flex-col md:items-start sm:items-center items-start h-full justify-between">
-                <div>
-                  <span className="text-midnight_text dark:text-white text-xl font-bold">
-                    Volunteer With Us
-                  </span>
-                  <p className="text-DeepOcean font-normal max-w-80 pt-3 pb-7 dark:text-white/50 text-base">
-                    Join our team of dedicated volunteers and help newcomers
-                    settle, learn, and build a brighter future in British Columbia.
-                  </p>
-                </div>
-                <div>
+              <h4 className="text-lg font-bold text-midnight_text dark:text-white group-hover:text-primary group-active:text-primary mb-3 transition-colors duration-300">
+                Volunteer With Us
+              </h4>
+              <p className="text-muted dark:text-white/80 text-sm leading-relaxed mb-5">
+                Join our volunteer team and help newcomers settle, learn, and build a brighter future in BC.
+              </p>
+              <div>
                   <button
                     onClick={() => setIsVolunteerOpen(true)}
-                    className="text-primary text-base font-medium flex items-center gap-3 group hover:text-midnight_text dark:hover:text-white cursor-pointer"
+                    className="text-primary text-sm font-medium flex items-center gap-2 mx-auto hover:text-midnight_text dark:hover:text-white transition-colors cursor-pointer"
                   >
                     Get involved
-                    <Icon icon="mdi:arrow-right" className="text-xl text-primary group-hover:text-midnight_text dark:group-hover:text-white transition-colors" />
+                    <Icon icon="mdi:arrow-right" className="text-lg" />
                   </button>
                 </div>
-              </div>
             </div>
           </div>
           <div className="md:pt-32 pt-11 md:pb-28 pb-8">
@@ -143,7 +134,7 @@ const ContactInfo = () => {
             </button>
 
             <div className="flex justify-center mb-6">
-              <div className="max-w-[170px]">
+              <div className="max-w-[220px]">
                 <Logo />
               </div>
             </div>

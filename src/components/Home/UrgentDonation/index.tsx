@@ -99,7 +99,7 @@ const UrgentDonation = () => {
             </button>
 
             <div className="flex justify-center mb-6">
-              <div className="max-w-[170px]">
+              <div className="max-w-[220px]">
                 <Logo />
               </div>
             </div>

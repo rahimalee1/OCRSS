@@ -9,7 +9,7 @@ const Hero = () => {
   const donationInfo = useContext(DonationFormContext);
   return (
     <>
-    <section className="relative bg-cover text-white md:pt-40 md:pb-28 pt-28 pb-20 bg-no-repeat bg-[url('/images/hero/banner-bg.jpg')] lg:pt-44 sm:pt-44" >
+    <section className="relative min-h-[480px] md:min-h-[520px] lg:min-h-[560px] text-white pt-36 pb-36 md:pt-44 md:pb-44 lg:pt-52 lg:pb-52 bg-no-repeat bg-cover bg-center bg-[url('/images/hero/banner-bg.jpg')]" >
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4 grid grid-cols-12">
           <div className="bg-white rounded-md p-10 lg:col-span-5 md:col-span-7 sm:col-span-10 col-span-12 dark:bg-dark" data-aos="fade-right">
           <div className="mb-6">
@@ -42,13 +42,13 @@ const Hero = () => {
           <div className="flex justify-center gap-3">
             <button
               onClick={() => donationInfo?.setIsDonationOpen(true)}
-              className="text-white bg-primary text-sm px-7 py-4 font-semibold rounded-md hover:bg-darkprimary transition-colors"
+              className="text-white bg-primary text-sm px-7 py-4 font-semibold rounded-md hover:bg-darkprimary transition-colors whitespace-nowrap"
             >
               Donate Now
             </button>
             <Link
               href="/about"
-              className="text-midnight_text dark:text-white border border-midnight_text dark:border-white text-sm px-7 py-4 font-semibold rounded-md hover:bg-midnight_text hover:text-white dark:hover:bg-white dark:hover:text-dark transition-colors"
+              className="text-midnight_text dark:text-white border border-midnight_text dark:border-white text-sm px-7 py-4 font-semibold rounded-md hover:bg-midnight_text hover:text-white dark:hover:bg-white dark:hover:text-dark transition-colors whitespace-nowrap"
             >
               Learn More
             </Link>

@@ -20,10 +20,10 @@ export const headerData: HeaderItem[] = [
     ],
   },
   {
-    label: "Blog",
+    label: "Blogs",
     href: "/blog",
     submenu: [
-      { label: "Blog list", href: "/blog" },
+      { label: "Blogs list", href: "/blog" },
       { label: "Blog details", href: "/blog/blog_1" },
     ],
   },

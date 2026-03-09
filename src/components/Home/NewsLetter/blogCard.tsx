@@ -8,13 +8,12 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
     return (
         <>
             <Link href={`/blog/${slug}`} className="group flex items-center gap-8">
-                <div className="overflow-hidden rounded-sm">
+                <div className="relative w-24 h-24 flex-shrink-0 overflow-hidden rounded-sm">
                     <Image
                         src={coverImage!}
                         alt="image"
-                        width={150}
-                        height={100}
-                        className="group-hover:scale-110 duration-300"
+                        fill
+                        className="object-cover group-hover:scale-110 duration-300"
                     />
                 </div>
                 <div className="">

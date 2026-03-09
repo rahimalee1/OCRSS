@@ -12,7 +12,7 @@ export default function AboutPage() {
   return (
     <main>
       {/* Hero Banner */}
-      <section className="pt-36 pb-16 bg-linear-to-r from-primary to-secondary">
+      <section className="pt-44 pb-16 lg:pt-52 bg-linear-to-r from-primary to-secondary">
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4" data-aos="fade-up">
             About Us
@@ -30,7 +30,7 @@ export default function AboutPage() {
             <div data-aos="fade-right">
               <div className="relative rounded-lg overflow-hidden">
                 <Image
-                  src="/images/causes/cause-1.jpg"
+                  src="/images/about/aboutus.png"
                   alt="OCRSS Community"
                   width={600}
                   height={400}

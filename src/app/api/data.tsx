@@ -66,7 +66,7 @@ export const ServiceData: ServiceItem[] = [
       "OCRSS assists newcomers with orientation and Canadian life skills. We offer comprehensive orientation sessions that cover everything a newly arrived family needs to know \u2014 from how to access healthcare and enrol children in school, to understanding the public transit system, opening a bank account, and knowing their legal rights. Each participant receives a personalized settlement plan that respects their unique background while building the knowledge and confidence needed to navigate life in British Columbia independently.",
   },
   {
-    image: "/images/services/immigration.png",
+    image: "/images/services/languagesupport.png",
     title: "Language Support",
     slug: "language-support",
     subtitle:
@@ -81,7 +81,7 @@ export const ServiceData: ServiceItem[] = [
       "Language barriers are one of the most significant challenges facing newcomers. OCRSS provides professional interpretation and translation services for medical appointments, legal consultations, school meetings, and government interactions. We also connect families with English as a Second Language (ESL) programs and provide in-house language support to help adults and youth build everyday communication skills. Our goal is to ensure that no one is unable to access the services they need simply because of a language gap.",
   },
   {
-    image: "/images/services/culture.jpg",
+    image: "/images/services/culturalsupport.png",
     title: "Cultural Lifestyle Support",
     slug: "cultural-lifestyle-support",
     subtitle:
@@ -96,7 +96,7 @@ export const ServiceData: ServiceItem[] = [
       "OCRSS promotes community development, cultural understanding, and the Canadian multiculturalism concept. We believe that successful integration means embracing Canadian values while honouring one\u2019s cultural heritage. Our cultural lifestyle programs help newcomers understand Canadian social norms, workplace culture, and community expectations, while also creating spaces where they can practise and share their own traditions. Through cross-cultural dialogue events and community forums, we foster mutual respect and understanding across all backgrounds.",
   },
   {
-    image: "/images/services/cultural%20festival.png",
+    image: "/images/services/traditionalcultural.png",
     title: "Traditional & Cultural Activities",
     slug: "traditional-cultural-activities",
     subtitle:
@@ -111,7 +111,7 @@ export const ServiceData: ServiceItem[] = [
       "OCRSS organizes traditional and cultural activities that keep Oromo heritage alive within the diaspora community. From cultural shows and traditional food festivals to heritage language classes for the next generation, our programs ensure that newcomers can stay connected to their roots while building a new life in Canada. These events also serve as bridges between communities \u2014 inviting all British Columbians to learn about, appreciate, and celebrate the rich traditions of the Oromo people.",
   },
   {
-    image: "/images/services/charity.jpg",
+    image: "/images/services/sponsorship.jpg",
     title: "Sponsorship Programs",
     slug: "sponsorship-programs",
     subtitle:
@@ -276,8 +276,8 @@ export const Reviews: {
   {
     clientName: "Alawy Sharifa",
     review:
-      "OCRSS helped my family settle into a new life in British Columbia. From finding housing to language support and employment guidance, they were with us every step of the way. I truly feel at home now thanks to their dedicated team.",
-    post: "Community Member",
+      "I founded OCRSS to create a welcoming place where refugees and newcomers could find settlement support, education, and community. Our mission is to help every family build a safe, dignified life in British Columbia. I am proud of what we have achieved together with our team and community.",
+    post: "Founder",
   },
   {
     clientName: "Muhammad Rahim",

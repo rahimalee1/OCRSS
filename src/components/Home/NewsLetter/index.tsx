@@ -31,10 +31,10 @@ const Newsletter = () => {
                 View all
               </Link>
             </div>
-            {posts.slice(0, 3).map((blog, i) => (
+            {posts.slice(0, 6).map((blog, i) => (
               <div
                 key={i}
-                className="lg:mb-10 mb-6"
+                className="lg:mb-6 mb-5"
                 data-aos="fade-up"
                 data-aos-delay="200"
                 data-aos-duration="1000"

@@ -11,7 +11,7 @@ const BlogPage = () => {
     return (
         <>
             <HeroSub
-                title="Blog"
+                title="Blogs"
             />
             <BlogList />
             <Volunteer />
