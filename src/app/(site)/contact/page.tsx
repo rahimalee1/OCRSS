@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const page = () => {
   return (
     <>
-      <HeroSub title="Contact Us" />
+      <HeroSub title="Contact Us" backgroundImage="/images/contact-page/contactus.jpg" />
       <ContactInfo />
       <ContactForm />
       <Location />
