@@ -128,7 +128,7 @@ const EventDetails: FC<EventProps> = ({
                     className="h-4 w-4"
                   />
                 </Link>
-                <Link href="#">
+                <Link href="https://www.linkedin.com/in/ocrss-bc/" target="_blank" rel="noopener noreferrer">
                   <Image
                     src="/images/icons/icon-linkedin.svg"
                     alt="icon"

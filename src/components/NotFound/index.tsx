@@ -12,11 +12,9 @@ const NotFound = () => {
               <Image
                 src="/images/background/404.svg"
                 alt="image"
-                width={0}
-                height={0}
-                layout="responsive"
+                fill
                 quality={100}
-                className="mx-auto max-w-full"
+                className="object-contain"
               />
             </div>
           </div>

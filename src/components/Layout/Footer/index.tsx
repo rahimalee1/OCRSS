@@ -135,7 +135,7 @@ const Footer: FC = () => {
                 className="text-xl text-midnight_text dark:text-white hover:text-primary! cursor-pointer"
               />
             </Link>
-            <Link href="#">
+            <Link href="https://www.linkedin.com/in/ocrss-bc/" target="_blank" rel="noopener noreferrer">
               <Icon
                 icon="ri:linkedin-fill"
                 className="text-xl text-midnight_text dark:text-white hover:text-primary! cursor-pointer"
