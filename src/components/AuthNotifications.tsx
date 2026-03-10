@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useSession, type SessionStatus } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
+
+type SessionStatus = "loading" | "authenticated" | "unauthenticated";
 
 export function AuthNotifications() {
   const { status } = useSession();
@@ -24,7 +26,7 @@ export function AuthNotifications() {
       toast.success("Signed out successfully.");
     }
 
-    previousStatus.current = status;
+    previousStatus.current = status as SessionStatus;
   }, [status]);
 
   return null;
