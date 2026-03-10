@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import Logo from "@/components/Layout/Header/Logo";
 import toast from "react-hot-toast";
+import { AutoEmailInput } from "@/components/SharedComponent/AutoEmailInput";
 
 const inputClass =
   "w-full rounded-md border placeholder:text-gray-400 border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition focus:border-primary focus-visible:shadow-none dark:text-white dark:focus:border-primary";
@@ -152,9 +153,11 @@ const ContactInfo = () => {
                 <input name="firstName" placeholder="First name *" required type="text" className={inputClass} />
                 <input name="lastName" placeholder="Last name *" required type="text" className={inputClass} />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
                 <input name="phone" placeholder="Phone number" type="tel" className={inputClass} />
-                <input name="email" placeholder="Email *" required type="email" className={inputClass} />
+                <div>
+                  <AutoEmailInput name="email" required placeholder="Email *" className={inputClass} />
+                </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <input name="dob" placeholder="Date of birth" type="date" className={inputClass} />

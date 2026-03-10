@@ -3,16 +3,21 @@
 import Logo from "@/components/Layout/Header/Logo";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
+import { useSession } from "next-auth/react";
 
 const inputClass =
   "w-full rounded-md border placeholder:text-gray-400 border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition focus:border-primary focus-visible:shadow-none dark:text-white dark:focus:border-primary";
 
 export const Donation = () => {
+  const { data: session } = useSession();
   const [donationAmount, setDonationAmount] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const isLoggedIn = Boolean(session?.user?.email);
+  const sessionEmail = session?.user?.email ?? "";
+  const [guestEmail, setGuestEmail] = useState("");
 
   function getDonationAmount(value: any) {
     setDonationAmount(String(value));
@@ -106,8 +111,17 @@ export const Donation = () => {
             placeholder="Email address *"
             name="email"
             required
-            className={inputClass}
+            value={isLoggedIn ? sessionEmail : guestEmail}
+            onChange={isLoggedIn ? undefined : (e) => setGuestEmail(e.target.value)}
+            readOnly={isLoggedIn}
+            className={`${inputClass} ${isLoggedIn ? "cursor-not-allowed bg-gray-100 dark:bg-dark/50 opacity-90" : ""}`}
+            aria-label={isLoggedIn ? "Email (from your Google account)" : "Email address"}
           />
+          {isLoggedIn && (
+            <p className="text-xs text-muted dark:text-white/50 -mt-1">
+              Using your Google account email. This cannot be changed.
+            </p>
+          )}
         </div>
 
         <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">

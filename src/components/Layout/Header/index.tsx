@@ -11,6 +11,8 @@ import { useTheme } from "next-themes";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import DonationFormContext from "@/app/context/donationContext";
 import { Donation } from "@/components/Home/Hero/Donation";
+import { useSession, signOut } from "next-auth/react";
+import toast from "react-hot-toast";
 
 const Header: React.FC = () => {
   const pathUrl = usePathname();
@@ -25,7 +27,9 @@ const Header: React.FC = () => {
 
   const updateNavHeight = useCallback(() => {
     if (navRef.current && headerRef.current) {
-      headerRef.current.style.setProperty('--nav-h', `${navRef.current.offsetHeight}px`);
+      const h = `${navRef.current.offsetHeight}px`;
+      headerRef.current.style.setProperty('--nav-h', h);
+      document.documentElement.style.setProperty('--nav-h', h);
     }
   }, []);
 
@@ -65,6 +69,7 @@ const Header: React.FC = () => {
   }, [pathUrl]);
 
   const donationInfo = useContext(DonationFormContext);
+  const { data: session, status } = useSession();
 
   return (
     <header
@@ -82,7 +87,41 @@ const Header: React.FC = () => {
               <HeaderLink key={index} item={item} />
             ))}
           </nav>
-          <div className="flex items-center space-x-4 relative top-[1px]">
+          <div className="flex items-center gap-2 sm:gap-3 relative top-[1px]">
+            {status !== "loading" && (
+              <>
+                {session?.user ? (
+                  <>
+                    <Link
+                      href="/profile"
+                      className={`inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary px-2 py-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/5 ${!sticky && pathUrl === "/" ? "text-white" : "text-midnight_text dark:text-white"}`}
+                    >
+                      <Icon icon="mdi:account-outline" className="text-lg" />
+                      <span className="hidden sm:inline">Profile</span>
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        toast.loading("Signing you out…");
+                        signOut({ callbackUrl: "/" });
+                      }}
+                      className={`inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary px-2 py-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/5 ${!sticky && pathUrl === "/" ? "text-white" : "text-midnight_text dark:text-white"}`}
+                    >
+                      <Icon icon="mdi:logout" className="text-lg" />
+                      <span className="hidden sm:inline">Sign out</span>
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    href="/login"
+                    className={`inline-flex items-center gap-1.5 text-sm font-medium hover:text-primary px-2 py-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/5 ${!sticky && pathUrl === "/" ? "text-white" : "text-midnight_text dark:text-white"}`}
+                  >
+                    <Icon icon="mdi:login" className="text-lg" />
+                    <span className="hidden sm:inline">Sign in</span>
+                  </Link>
+                )}
+              </>
+            )}
             <button
               aria-label="Toggle theme"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -185,6 +224,30 @@ const Header: React.FC = () => {
           {headerData.map((item, index) => (
             <MobileHeaderLink key={index} item={item} />
           ))}
+          <div className="w-full border-t border-border dark:border-dark_border mt-2 pt-4 flex flex-col gap-2">
+            {session?.user ? (
+              <>
+                <Link href="/profile" onClick={() => setNavbarOpen(false)} className="flex items-center gap-2 py-2 px-3 text-black dark:text-white rounded-md hover:bg-primary hover:text-white w-full">
+                  <Icon icon="mdi:account-outline" className="text-xl" /> Profile
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    toast.loading("Signing you out…");
+                    setNavbarOpen(false);
+                    signOut({ callbackUrl: "/" });
+                  }}
+                  className="flex items-center gap-2 py-2 px-3 text-left text-black dark:text-white rounded-md hover:bg-primary hover:text-white w-full"
+                >
+                  <Icon icon="mdi:logout" className="text-xl" /> Sign out
+                </button>
+              </>
+            ) : (
+              <Link href="/login" onClick={() => setNavbarOpen(false)} className="flex items-center gap-2 py-2 px-3 text-black dark:text-white rounded-md hover:bg-primary hover:text-white w-full">
+                <Icon icon="mdi:login" className="text-xl" /> Sign in
+              </Link>
+            )}
+          </div>
         </nav>
       </div>
       {/* Donation Popup */}

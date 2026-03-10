@@ -5,20 +5,21 @@ import Volunteer from "@/components/SharedComponent/Volunteer";
 import React from "react";
 import HeroSub from "@/components/SharedComponent/HeroSub";
 import { Metadata } from "next";
+import { getSiteImages } from "@/app/lib/site-images";
+
 export const metadata: Metadata = {
   title: "Contact | OCRSS",
 };
 
-const page = () => {
+export default async function ContactPage() {
+  const siteImages = await getSiteImages();
   return (
     <>
-      <HeroSub title="Contact Us" />
+      <HeroSub title="Contact Us" backgroundImage={siteImages.contactBanner} />
       <ContactInfo />
-      <ContactForm />
+      <ContactForm imageUrl={siteImages.contactFormImage} />
       <Location />
       <Volunteer />
     </>
   );
-};
-
-export default page;
+}

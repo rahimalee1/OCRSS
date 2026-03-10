@@ -5,15 +5,17 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { ServiceData } from "@/app/api/data";
 import { Icon } from "@iconify/react";
+import { getSiteImages } from "@/app/lib/site-images";
 
 export const metadata: Metadata = {
   title: "Our Services | OCRSS",
 };
 
-const Page = () => {
+export default async function Page() {
+  const siteImages = await getSiteImages();
   return (
     <>
-      <HeroSub title="Our Services" />
+      <HeroSub title="Our Services" backgroundImage={siteImages.servicesBanner} />
       <section className="lg:pt-16 lg:pb-28 pt-10 pb-16 dark:bg-dark">
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
@@ -94,9 +96,8 @@ const Page = () => {
           </div>
         </div>
       </section>
-      <Volunteer />
+      <Volunteer backgroundImage={siteImages.volunteerBg} />
     </>
   );
 };
 
-export default Page;

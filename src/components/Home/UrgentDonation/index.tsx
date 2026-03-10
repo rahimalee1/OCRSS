@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import Logo from "@/components/Layout/Header/Logo";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { AutoEmailInput } from "@/components/SharedComponent/AutoEmailInput";
 
 const inputClass =
   "w-full rounded-md border placeholder:text-gray-400 border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition focus:border-primary focus-visible:shadow-none dark:text-white dark:focus:border-primary";
@@ -11,7 +12,7 @@ const inputClass =
 const selectClass =
   "w-full rounded-md border border-border dark:border-dark_border border-solid bg-white dark:bg-dark px-5 py-3 text-base text-dark dark:text-white outline-hidden transition focus:border-primary dark:focus:border-primary [&>option]:bg-white [&>option]:text-dark dark:[&>option]:bg-dark dark:[&>option]:text-white";
 
-const UrgentDonation = () => {
+const UrgentDonation = ({ bannerImage = "/images/background/donate-banner.jpg" }: { bannerImage?: string }) => {
   const [isVolunteerOpen, setIsVolunteerOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -53,7 +54,7 @@ const UrgentDonation = () => {
 
   return (
     <>
-      <section className="bg-[url('/images/background/donate-banner.jpg')] bg-cover sm:py-52 lg:py-28 py-16 bg-no-repeat">
+      <section className="bg-cover sm:py-52 lg:py-28 py-16 bg-no-repeat" style={{ backgroundImage: `url(${bannerImage})` }}>
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">
           <div
             className="bg-white dark:bg-dark max-w-29 w-full px-10 py-14 rounded-lg text-center mx-auto"
@@ -119,7 +120,7 @@ const UrgentDonation = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <input name="phone" placeholder="Phone number" type="tel" className={inputClass} />
-                <input name="email" placeholder="Email *" required type="email" className={inputClass} />
+                <AutoEmailInput name="email" required placeholder="Email *" className={inputClass} hideHelperText />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <input name="dob" placeholder="Date of birth" type="date" className={inputClass} />

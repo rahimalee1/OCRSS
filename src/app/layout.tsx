@@ -7,6 +7,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 import Aoscompo from "@/utils/aos"; 
 import { DonationProvider } from "./context/donationContext";
 import { Toaster } from "react-hot-toast";
+import { Providers } from "@/components/Providers";
 const montserrat = Montserrat({ subsets: ["latin"] });
 import NextTopLoader from 'nextjs-toploader';
 import type { Metadata } from "next";
@@ -29,7 +30,8 @@ export default function RootLayout({
       </head>
       <body className={montserrat.className}>
       <NextTopLoader color="#FF4D7E" shadow={false} zIndex={40} />
-      <DonationProvider>
+      <Providers>
+        <DonationProvider>
         <ThemeProvider
           attribute="class"
           enableSystem={true}
@@ -46,6 +48,7 @@ export default function RootLayout({
           <Toaster position="top-center" />
         </ThemeProvider>
         </DonationProvider>
+        </Providers>
       </body>
     </html>
   );

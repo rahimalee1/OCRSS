@@ -4,6 +4,7 @@ import Image from "next/image";
 import Logo from "../Header/Logo";
 import { footerLinks } from "@/app/api/data";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { FACEBOOK_URL, LINKEDIN_URL, X_URL } from "@/lib/social-links";
 
 const Footer: FC = () => {
   return (
@@ -123,7 +124,7 @@ const Footer: FC = () => {
             © {new Date().getFullYear()} OCRSS — Oromo Cultural Resettlement Services Society. All Rights Reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="#">
+            <Link href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer">
               <Icon
                 icon="ri:facebook-fill"
                 className="text-xl text-midnight_text dark:text-white hover:text-primary! cursor-pointer"
@@ -135,16 +136,16 @@ const Footer: FC = () => {
                 className="text-xl text-midnight_text dark:text-white hover:text-primary! cursor-pointer"
               />
             </Link>
-            <Link href="https://www.linkedin.com/in/ocrss-bc/" target="_blank" rel="noopener noreferrer">
+            <Link href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
               <Icon
                 icon="ri:linkedin-fill"
                 className="text-xl text-midnight_text dark:text-white hover:text-primary! cursor-pointer"
               />
             </Link>
-            <Link href="#">
+            <Link href={X_URL} target="_blank" rel="noopener noreferrer">
               <Icon
-                icon="line-md:twitter-x-alt"
-                className="text-base text-midnight_text dark:text-white hover:text-primary! cursor-pointer"
+                icon="simple-icons:x"
+                className="text-xl text-midnight_text dark:text-white hover:text-primary! cursor-pointer"
               />
             </Link>
           </div>

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 
-const ContactForm = () => {
+const ContactForm = ({ imageUrl = "/images/contact-page/contactus.jpg" }: { imageUrl?: string }) => {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -150,11 +150,12 @@ const ContactForm = () => {
             </div>
             <div className="lg:col-span-6 lg:order-2 order-1 relative min-h-[500px] h-full">
               <Image
-                src="/images/contact-page/contactus.jpg"
+                src={imageUrl}
                 alt="Contact us"
                 fill
                 quality={100}
                 className="object-cover object-center rounded-2xl"
+                unoptimized={imageUrl.startsWith("http")}
               />
             </div>
           </div>

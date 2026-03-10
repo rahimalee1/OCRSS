@@ -5,6 +5,7 @@ import Volunteer from "@/components/SharedComponent/Volunteer";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
+import { FACEBOOK_URL, LINKEDIN_URL, X_URL } from "@/lib/social-links";
 
 const ServiceDetail = () => {
   const { slug } = useParams();
@@ -88,7 +89,7 @@ const ServiceDetail = () => {
                 <div className="mt-10 flex items-center justify-between">
                   <h5 className="text-lg font-medium">Share</h5>
                   <div className="flex items-center gap-4">
-                    <Link href="#">
+                    <Link href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer">
                       <Image
                         src="/images/icons/icon-facebook.svg"
                         alt="Facebook"
@@ -106,7 +107,7 @@ const ServiceDetail = () => {
                         className="h-4 w-4"
                       />
                     </Link>
-                    <Link href="https://www.linkedin.com/in/ocrss-bc/" target="_blank" rel="noopener noreferrer">
+                    <Link href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
                       <Image
                         src="/images/icons/icon-linkedin.svg"
                         alt="LinkedIn"
@@ -115,14 +116,8 @@ const ServiceDetail = () => {
                         className="h-4 w-4"
                       />
                     </Link>
-                    <Link href="#">
-                      <Image
-                        src="/images/icons/icon-twitter.svg"
-                        alt="Twitter"
-                        width={16}
-                        height={16}
-                        className="h-4 w-4"
-                      />
+                    <Link href={X_URL} target="_blank" rel="noopener noreferrer">
+                      <Icon icon="simple-icons:x" className="h-4 w-4" aria-label="X (Twitter)" />
                     </Link>
                   </div>
                 </div>

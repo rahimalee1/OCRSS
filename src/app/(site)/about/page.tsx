@@ -3,25 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import AboutCTA from "@/components/About/CTA";
 import PurposesGrid from "@/components/About/PurposesGrid";
+import HeroSub from "@/components/SharedComponent/HeroSub";
+import { getSiteImages } from "@/app/lib/site-images";
 
 export const metadata: Metadata = {
   title: "About Us | OCRSS",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const siteImages = await getSiteImages();
   return (
     <main>
-      {/* Hero Banner */}
-      <section className="pt-44 pb-16 lg:pt-52 bg-linear-to-r from-primary to-secondary">
-        <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4" data-aos="fade-up">
-            About Us
-          </h1>
-          <p className="text-white/80 text-lg max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-            Building stronger communities and safer futures for newcomers in British Columbia.
-          </p>
-        </div>
-      </section>
+      <HeroSub title="About Us" backgroundImage={siteImages.aboutBanner} />
 
       {/* Who We Are */}
       <section className="lg:py-28 py-16 bg-white dark:bg-dark">
@@ -30,11 +23,12 @@ export default function AboutPage() {
             <div data-aos="fade-right">
               <div className="relative rounded-lg overflow-hidden">
                 <Image
-                  src="/images/about/aboutus.png"
+                  src={siteImages.aboutUs}
                   alt="OCRSS Community"
                   width={600}
                   height={400}
                   className="w-full h-auto object-cover rounded-lg"
+                  unoptimized={siteImages.aboutUs.startsWith("http")}
                 />
               </div>
             </div>
@@ -111,7 +105,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <AboutCTA />
+      <AboutCTA backgroundImage={siteImages.aboutCtaBg} />
     </main>
   );
 }

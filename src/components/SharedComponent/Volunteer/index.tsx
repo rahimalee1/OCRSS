@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import Logo from "@/components/Layout/Header/Logo";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { AutoEmailInput } from "@/components/SharedComponent/AutoEmailInput";
 
 const inputClass =
   "w-full rounded-md border placeholder:text-gray-400 border-border dark:border-dark_border border-solid bg-transparent px-5 py-3 text-base text-dark outline-hidden transition focus:border-primary focus-visible:shadow-none dark:text-white dark:focus:border-primary";
@@ -11,7 +12,7 @@ const inputClass =
 const selectClass =
   "w-full rounded-md border border-border dark:border-dark_border border-solid bg-white dark:bg-dark px-5 py-3 text-base text-dark dark:text-white outline-hidden transition focus:border-primary dark:focus:border-primary [&>option]:bg-white [&>option]:text-dark dark:[&>option]:bg-dark dark:[&>option]:text-white";
 
-const Volunteer = () => {
+const Volunteer = ({ backgroundImage = "/images/background/volunteer-bg.jpg" }: { backgroundImage?: string }) => {
   const [isMemberOpen, setIsMemberOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -53,7 +54,7 @@ const Volunteer = () => {
 
   return (
     <>
-      <section className="lg:py-28 py-16 bg-[url('/images/background/volunteer-bg.jpg')] bg-no-repeat bg-cover overflow-hidden">
+      <section className="lg:py-28 py-16 bg-no-repeat bg-cover overflow-hidden" style={{ backgroundImage: `url(${backgroundImage})` }}>
         <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4">
           <div className="text-center">
             <h2 className="text-3xl font-medium text-white mb-6">
@@ -157,12 +158,15 @@ const Volunteer = () => {
                 <input name="zip" placeholder="Postal code" type="text" className={inputClass} />
               </div>
 
-              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">Contact</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <input name="email" placeholder="Email *" required type="email" className={inputClass} />
+              <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-2">Contact</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-1">
+                <AutoEmailInput name="email" required placeholder="Email *" className={inputClass} hideHelperText />
                 <input name="phone" placeholder="Phone" type="tel" className={inputClass} />
                 <input name="homePhone" placeholder="Home phone" type="tel" className={inputClass} />
               </div>
+              <p className="text-xs text-muted dark:text-white/50 mb-4">
+                Using your Google account email. This cannot be changed.
+              </p>
 
               <p className="text-xs font-semibold uppercase tracking-wider text-primary mb-4">Background</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">

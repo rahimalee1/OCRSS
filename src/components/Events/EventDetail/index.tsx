@@ -1,7 +1,9 @@
 import React, { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Icon } from "@iconify/react";
 import { format } from "date-fns";
+import { FACEBOOK_URL, LINKEDIN_URL, X_URL } from "@/lib/social-links";
 
 interface EventProps {
   title?: string;
@@ -110,10 +112,10 @@ const EventDetails: FC<EventProps> = ({
             <div className="flex items-center justify-between">
               <h5 className="text-lg font-medium text-darktext">Share</h5>
               <div className="flex items-center gap-4">
-                <Link href="#">
+                <Link href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer">
                   <Image
                     src="/images/icons/icon-facebook.svg"
-                    alt="icon"
+                    alt="Facebook"
                     width={16}
                     height={16}
                     className="h-4 w-4"
@@ -128,7 +130,7 @@ const EventDetails: FC<EventProps> = ({
                     className="h-4 w-4"
                   />
                 </Link>
-                <Link href="https://www.linkedin.com/in/ocrss-bc/" target="_blank" rel="noopener noreferrer">
+                <Link href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
                   <Image
                     src="/images/icons/icon-linkedin.svg"
                     alt="icon"
@@ -137,14 +139,8 @@ const EventDetails: FC<EventProps> = ({
                     className="h-4 w-4"
                   />
                 </Link>
-                <Link href="#">
-                  <Image
-                    src="/images/icons/icon-twitter.svg"
-                    alt="icon"
-                    width={16}
-                    height={16}
-                    className="h-4 w-4"
-                  />
+                <Link href={X_URL} target="_blank" rel="noopener noreferrer">
+                  <Icon icon="simple-icons:x" className="h-4 w-4" aria-label="X (Twitter)" />
                 </Link>
               </div>
             </div>

@@ -2,16 +2,36 @@
 
 import Link from "next/link";
 import { useContext } from "react";
+import Image from "next/image";
 import { Donation } from "./Donation";
 import DonationFormContext from "@/app/context/donationContext";
 
-const Hero = () => {
+const DEFAULT_HERO_IMAGE = "/images/hero/banner-bg.jpg";
+
+const Hero = ({ heroImageUrl }: { heroImageUrl?: string }) => {
   const donationInfo = useContext(DonationFormContext);
+  const bgImage = heroImageUrl || DEFAULT_HERO_IMAGE;
   return (
     <>
-    <section className="relative min-h-[480px] md:min-h-[520px] lg:min-h-[560px] text-white pt-36 pb-36 md:pt-44 md:pb-44 lg:pt-52 lg:pb-52 bg-no-repeat bg-cover bg-center bg-[url('/images/hero/banner-bg.jpg')]" >
-      <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4 grid grid-cols-12">
-          <div className="bg-white rounded-md p-10 lg:col-span-5 md:col-span-7 sm:col-span-10 col-span-12 dark:bg-dark" data-aos="fade-right">
+      <section
+        className="relative min-h-[480px] md:min-h-[520px] lg:min-h-[560px] text-white pt-36 pb-36 md:pt-44 md:pb-44 lg:pt-52 lg:pb-52 overflow-hidden"
+      >
+        {/* Background image */}
+        <Image
+          src={bgImage}
+          alt="Oromo Cultural Resettlement Services Society"
+          fill
+          priority
+          className="absolute inset-0 -z-20 object-cover"
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 -z-10 bg-black/40" />
+
+        <div className="container mx-auto lg:max-w-(--breakpoint-xl) px-4 grid grid-cols-12">
+          <div
+            className="bg-white rounded-md p-10 lg:col-span-5 md:col-span-7 sm:col-span-10 col-span-12 dark:bg-dark"
+            data-aos="fade-right"
+          >
           <div className="mb-6">
             <div className="px-4 py-2 bg-primary/10 rounded-sm inline-block">
               <p className="text-primary text-sm font-semibold">
@@ -53,12 +73,10 @@ const Hero = () => {
               Learn More
             </Link>
           </div>
+          </div>
         </div>
-      </div>
-    </section>
-
+      </section>
     </>
-    
   );
 };
 

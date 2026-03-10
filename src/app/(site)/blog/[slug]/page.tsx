@@ -1,10 +1,12 @@
 import LatestBlog from "@/components/Blog/LatestBlog";
 import Volunteer from "@/components/SharedComponent/Volunteer";
+import NewsletterSignup from "@/components/SharedComponent/NewsletterSignup";
 import { getAllPosts, getPostBySlug } from "@/utils/markdown";
 import markdownToHtml from "@/utils/markdownToHtml";
 import { format } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
+import { FACEBOOK_URL, LINKEDIN_URL, X_URL } from "@/lib/social-links";
 
 type Props = {
   params: { slug: string };
@@ -140,8 +142,8 @@ export default async function Post({ params }: any) {
                           Share
                         </h2>
                         <div className="flex gap-4 flex-col">
-                          <div className="bg-[#526fa3] py-4 px-6 text-20 rounded-lg text-white">
-                            <Link href="#" className="flex items-center ">
+                          <div className="bg-[#526fa3] py-4 px-6 text-20 rounded-lg text-white hover:brightness-110 transition-colors">
+                            <Link href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" className="flex items-center ">
                               <svg
                                 className="svg-inline--fa fa-facebook-f me-3"
                                 aria-hidden="true"
@@ -162,30 +164,30 @@ export default async function Post({ params }: any) {
                               Facebook
                             </Link>
                           </div>
-                          <div className="bg-[#46C4FF] py-4 px-6 text-20 rounded-lg text-white">
-                            <Link href="#" className="flex items-center ">
+                          <div className="bg-[#000000] py-4 px-6 text-20 rounded-lg text-white hover:brightness-110 transition-colors">
+                            <Link href={X_URL} target="_blank" rel="noopener noreferrer" className="flex items-center ">
                               <svg
-                                className="svg-inline--fa fa-twitter me-3"
+                                className="svg-inline--fa fa-x me-3"
                                 aria-hidden="true"
                                 focusable="false"
                                 data-prefix="fab"
-                                data-icon="twitter"
+                                data-icon="x"
                                 role="img"
                                 xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 512 512"
-                                height="21.5px"
-                                width="25px"
+                                viewBox="0 0 24 24"
+                                height="21px"
+                                width="21px"
                               >
                                 <path
                                   fill="currentColor"
-                                  d="M459.4 151.7c.325 4.548.325 9.097.325 13.745 0 140.966-107.416 303.213-303.213 303.213-60.452 0-116.426-17.781-163.725-48.265 8.447.974 16.568 1.299 25.34 1.299 50.236 0 96.56-17.206 133.26-46.258-46.832-.975-86.185-31.188-99.675-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.828-9.797-85.417-52.628-85.417-103.766v-1.299c14.33 7.92 30.748 12.67 48.364 13.32-28.264-18.843-46.832-51.014-46.832-87.391 0-19.492 5.197-37.36 14.33-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.794-2.599-15.91-2.599-24.029 0-57.502 46.833-104.335 104.334-104.335 30.137 0 57.502 12.67 76.67 33.137 23.715-4.548 46.182-13.32 66.599-25.34-7.793 24.366-24.366 44.833-46.182 57.502 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"
+                                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
                                 />
                               </svg>
-                              twitter
+                              X
                             </Link>
                           </div>
-                          <div className="bg-[#3C86AD] py-4 px-6 text-20 rounded-lg text-white">
-                            <Link href="https://www.linkedin.com/in/ocrss-bc/" target="_blank" rel="noopener noreferrer" className="flex items-center ">
+                          <div className="bg-[#3C86AD] py-4 px-6 text-20 rounded-lg text-white hover:brightness-110 transition-colors">
+                            <Link href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="flex items-center ">
                               <svg
                                 className="svg-inline--fa fa-linkedin-in me-3"
                                 aria-hidden="true"
@@ -203,7 +205,7 @@ export default async function Post({ params }: any) {
                                   d="M100.28 448H7.4V148.9h92.78zM53.79 108.1C24.09 108.1 0 83.79 0 54.14 0 24.37 24.09 0 53.79 0 83.3 0 107.6 24.37 107.6 54.14c.1 29.64-24.2 53.96-53.81 53.96zM447.4 448h-92.68V302.4c0-34.7-.7-79.29-48.32-79.29-48.32 0-55.7 37.72-55.7 76.79V448H157.3V148.9h88.94v40.8h1.28c12.4-23.41 42.62-48.32 87.76-48.32 93.9 0 111.18 61.81 111.18 142.3V448z"
                                 />
                               </svg>
-                              linkedin
+                              LinkedIn
                             </Link>
                           </div>
                         </div>
@@ -212,13 +214,7 @@ export default async function Post({ params }: any) {
                         <p className="text-24 mb-4">
                           Join our Newsletter
                         </p>
-                        <input
-                          placeholder="Email address "
-                          className="p-3 dark:bg-dark border border-border dark:border-dark_border rounded-lg mb-2 w-full focus:outline-0 focus:border-primary dark:focus:border-primary"
-                        />
-                        <button className="bg-linear-to-r w-full from-primary to-secondary px-7 border text-base text-white border-transparent py-4 rounded-sm hover:from-transparent hover:to-transparent hover:border-primary hover:text-primary">
-                          Subscribe
-                        </button>
+                        <NewsletterSignup source="Blog detail sidebar" />
                       </div>
                     </div>
                   </div>
