@@ -10,12 +10,13 @@ export async function GET() {
     if (!token) {
       return NextResponse.json(getDefaultSiteImages());
     }
-    const { blobs } = await list({ prefix: "config/" });
+    const { blobs } = await list({ prefix: "config/", token });
     const configBlob = blobs.find((b) => b.pathname === CONFIG_PATHNAME);
     if (!configBlob?.url) {
       return NextResponse.json(getDefaultSiteImages());
     }
-    const res = await fetch(configBlob.url);
+    const configUrl = `${configBlob.url}${configBlob.url.includes("?") ? "&" : "?"}_=${Date.now()}`;
+    const res = await fetch(configUrl, { cache: "no-store" });
     if (!res.ok) {
       return NextResponse.json(getDefaultSiteImages());
     }

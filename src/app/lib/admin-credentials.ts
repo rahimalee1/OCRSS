@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { ADMIN_EMAIL } from "./site-images";
 
 const CONFIG_PATHNAME = "config/admin-credentials.json";
-const INITIAL_PASSWORD = "oromoco2026";
+const INITIAL_PASSWORD = "Oromoco2026";
 
 export interface AdminCredentials {
   email: string;
@@ -27,9 +27,39 @@ async function getStoredCredentials(): Promise<AdminCredentials | null> {
 /** Server-only: get admin email and password hash (from Blob or initial default). */
 export async function getAdminCredentials(): Promise<AdminCredentials> {
   const stored = await getStoredCredentials();
-  if (stored) return stored;
+  // If we already have credentials and the email matches the hard-coded admin email,
+  // keep using them.
+  if (stored && stored.email === ADMIN_EMAIL) return stored;
+
+  // Otherwise, reset to the hard-coded admin email and initial password,
+  // while preserving the existing avatar if present.
   const passwordHash = await bcrypt.hash(INITIAL_PASSWORD, 10);
-  return { email: ADMIN_EMAIL, passwordHash, avatarUrl: null };
+  const reset: AdminCredentials = {
+    email: ADMIN_EMAIL,
+    passwordHash,
+    avatarUrl: stored?.avatarUrl ?? null,
+  };
+
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (token) {
+    await put(
+      CONFIG_PATHNAME,
+      JSON.stringify(
+        { email: reset.email, passwordHash: reset.passwordHash, avatarUrl: reset.avatarUrl },
+        null,
+        2
+      ),
+      {
+        access: "public",
+        addRandomSuffix: false,
+        contentType: "application/json",
+        allowOverwrite: true,
+        token,
+      }
+    );
+  }
+
+  return reset;
 }
 
 export async function getAdminEmail(): Promise<string> {

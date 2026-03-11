@@ -29,7 +29,7 @@ export default function AdminSectionImages({ title, description, images }: Admin
 
   async function loadConfig() {
     try {
-      const res = await fetch("/api/site-images");
+      const res = await fetch(`/api/site-images?_=${Date.now()}`, { cache: "no-store" });
       if (res.ok) {
         const data = await res.json();
         setConfig(data);
@@ -72,7 +72,11 @@ export default function AdminSectionImages({ title, description, images }: Admin
       }
       toast.success("Image replaced successfully.");
       setSelectedFile((prev) => ({ ...prev, [key]: null }));
-      await loadConfig();
+      if (data.config && typeof data.config === "object") {
+        setConfig(data.config);
+      } else {
+        await loadConfig();
+      }
     } catch (e: unknown) {
       toast.error(e instanceof Error ? e.message : "Upload failed.");
     } finally {
@@ -113,6 +117,7 @@ export default function AdminSectionImages({ title, description, images }: Admin
                 <div className="flex-shrink-0 w-full sm:w-48 aspect-video rounded-lg bg-grey dark:bg-dark overflow-hidden border border-border dark:border-dark_border">
                   {url ? (
                     <Image
+                      key={url}
                       src={url}
                       alt={label}
                       width={192}

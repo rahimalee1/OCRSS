@@ -53,7 +53,8 @@ export async function getSiteImages(): Promise<SiteImagesConfig> {
     const { blobs } = await list({ prefix: "config/", token });
     const configBlob = blobs.find((b) => b.pathname === CONFIG_PATHNAME);
     if (!configBlob?.url) return getDefaultSiteImages();
-    const res = await fetch(configBlob.url);
+    const configUrl = `${configBlob.url}${configBlob.url.includes("?") ? "&" : "?"}_=${Date.now()}`;
+    const res = await fetch(configUrl, { cache: "no-store" });
     if (!res.ok) return getDefaultSiteImages();
     const data = (await res.json()) as Partial<SiteImagesConfig>;
     return {

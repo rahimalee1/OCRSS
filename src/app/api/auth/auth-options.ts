@@ -54,6 +54,12 @@ export const authOptions: NextAuthOptions = {
         session.user.name = token.name ?? session.user.name;
         session.user.image = token.picture ?? session.user.image;
         (session as { provider?: string }).provider = token.provider as string | undefined;
+        // For credentials users, always use latest email and avatar from storage so profile updates without refresh
+        if (token.provider === "credentials") {
+          const admin = await getAdminCredentials();
+          session.user.email = admin.email;
+          session.user.image = admin.avatarUrl ?? session.user.image;
+        }
       }
       return session;
     },

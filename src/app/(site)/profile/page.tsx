@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -11,7 +11,7 @@ const inputClass =
   "w-full rounded-lg border border-border dark:border-dark_border bg-white dark:bg-dark px-4 py-3 text-base text-midnight_text dark:text-white placeholder:text-gray-400 outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20";
 
 export default function ProfilePage() {
-  const { data: session, status } = useSession();
+  const { data: session, status, update: updateSession } = useSession();
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -25,6 +25,22 @@ export default function ProfilePage() {
   const [avatarPassword, setAvatarPassword] = useState("");
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
+
+  const userEmail = session?.user?.email ?? null;
+  const isAdmin = useMemo(() => !!adminEmail && userEmail !== null && userEmail === adminEmail, [adminEmail, userEmail]);
+
+  useEffect(() => {
+    fetch("/api/site-contact") // cheap existing request warms up; ignore errors
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    // Get current admin email so the admin can change it later.
+    fetch("/api/admin-email-check")
+      .then((res) => res.json())
+      .then((data) => setAdminEmail(typeof data?.adminEmail === "string" ? data.adminEmail : null))
+      .catch(() => setAdminEmail(null));
+  }, []);
 
   if (status === "loading") {
     return (
@@ -40,20 +56,6 @@ export default function ProfilePage() {
 
   const user = session.user;
   const isCredentials = (session as { provider?: string }).provider === "credentials";
-  const isAdmin = useMemo(() => !!adminEmail && user.email === adminEmail, [adminEmail, user.email]);
-
-  useEffect(() => {
-    fetch("/api/site-contact") // cheap existing request warms up; ignore errors
-      .catch(() => {});
-  }, []);
-
-  useEffect(() => {
-    // Get current admin email so the admin can change it later.
-    fetch("/api/admin-email-check")
-      .then((res) => res.json())
-      .then((data) => setAdminEmail(typeof data?.adminEmail === "string" ? data.adminEmail : null))
-      .catch(() => setAdminEmail(null));
-  }, []);
 
   const handleChangePassword = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -77,10 +79,11 @@ export default function ProfilePage() {
         toast.error(data.error || "Failed to change password.");
         return;
       }
-      toast.success("Password changed successfully.");
+      toast.success("Password changed. Please sign in again.");
       setCurrentPassword("");
       setNewPassword("");
       setConfirmPassword("");
+      await signOut({ callbackUrl: "/login" });
     } finally {
       setChanging(false);
     }
@@ -104,10 +107,11 @@ export default function ProfilePage() {
         toast.error(data.error || "Failed to update admin email.");
         return;
       }
-      toast.success("Admin email updated. Please sign out and sign in again.");
+      toast.success("Email updated. Please sign in with your new email.");
       setAdminEmail(data.email ?? newAdminEmail.trim());
       setEmailPassword("");
       setNewAdminEmail("");
+      await signOut({ callbackUrl: "/login" });
     } finally {
       setUpdatingEmail(false);
     }
@@ -130,9 +134,10 @@ export default function ProfilePage() {
         toast.error(data.error || "Failed to upload avatar.");
         return;
       }
-      toast.success("Display picture updated. Refresh to see it everywhere.");
+      toast.success("Display picture updated.");
       setAvatarFile(null);
       setAvatarPassword("");
+      await updateSession();
     } finally {
       setUploadingAvatar(false);
     }

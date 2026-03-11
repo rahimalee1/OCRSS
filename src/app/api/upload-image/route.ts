@@ -70,7 +70,8 @@ export async function POST(request: Request) {
     const { blobs } = await list({ prefix: "config/", token });
     const configBlob = blobs.find((b) => b.pathname === CONFIG_PATHNAME);
     if (configBlob?.url) {
-      const res = await fetch(configBlob.url);
+      const configUrl = `${configBlob.url}${configBlob.url.includes("?") ? "&" : "?"}_=${Date.now()}`;
+      const res = await fetch(configUrl, { cache: "no-store" });
       if (res.ok) {
         config = (await res.json()) as SiteImagesConfig;
       }
@@ -86,7 +87,8 @@ export async function POST(request: Request) {
       token,
     });
 
-    return NextResponse.json({ url: blob.url, key });
+    const fullConfig = { ...getDefaultSiteImages(), ...config };
+    return NextResponse.json({ url: blob.url, key, config: fullConfig });
   } catch (err) {
     console.error("Upload error:", err);
     return NextResponse.json(
