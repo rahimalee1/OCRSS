@@ -5,8 +5,13 @@ import Logo from "../Header/Logo";
 import { footerLinks } from "@/app/api/data";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { FACEBOOK_URL, LINKEDIN_URL, X_URL } from "@/lib/social-links";
+import { phoneToWhatsApp, gmailComposeUrl, type SiteContactConfig } from "@/app/lib/site-contact";
 
-const Footer: FC = () => {
+interface FooterProps {
+  contactInfo?: SiteContactConfig;
+}
+
+const Footer: FC<FooterProps> = ({ contactInfo }) => {
   return (
     <footer className="pt-16 dark:bg-dark">
       <div className="container mx-auto lg:max-w-(--breakpoint-xl) md:max-w-(--breakpoint-md) px-4">
@@ -39,8 +44,7 @@ const Footer: FC = () => {
                     OCRSS Head Office
                   </h5>
                   <p className="text-sm text-muted dark:text-white/60">
-                    3, 3025 Nanaimo Street, Vancouver, BC. V5N 5W6 -
-                    CANADA
+                    {contactInfo?.address ?? "3, 3025 Nanaimo Street, Vancouver, BC V5N 5W6, Canada"}
                   </p>
                 </div>
               </div>
@@ -54,11 +58,11 @@ const Footer: FC = () => {
                 />
                 <div className="">
                   <Link
-                    href="https://wa.me/16042201449"
+                    href={phoneToWhatsApp(contactInfo?.phone ?? "(604) 220-1449")}
                     target="_blank"
                     className="text-sm text-midnight_text dark:text-white mb-0 hover:text-primary!"
                   >
-                    +1 (604) 220-1449
+                    {contactInfo?.phone ?? "(604) 220-1449"}
                   </Link>
                 </div>
               </div>
@@ -72,11 +76,11 @@ const Footer: FC = () => {
                 />
                 <div className="">
                   <Link
-                    href="https://mail.google.com/mail/?view=cm&to=oromocultural@gmail.com"
+                    href={gmailComposeUrl(contactInfo?.email ?? "oromocultural@gmail.com")}
                     target="_blank"
                     className="text-sm text-midnight_text dark:text-white mb-0 hover:text-primary!"
                   >
-                    oromocultural@gmail.com
+                    {contactInfo?.email ?? "oromocultural@gmail.com"}
                   </Link>
                 </div>
               </div>

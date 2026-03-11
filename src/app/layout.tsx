@@ -11,17 +11,19 @@ import { Providers } from "@/components/Providers";
 const montserrat = Montserrat({ subsets: ["latin"] });
 import NextTopLoader from 'nextjs-toploader';
 import type { Metadata } from "next";
+import { getSiteContact } from "@/app/lib/site-contact";
 
 export const metadata: Metadata = {
   title: "OCRSS | Oromo Cultural Resettlement Services Society",
   description: "Providing social, educational, employment, and settlement services to refugees and immigrants in British Columbia.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const contactInfo = await getSiteContact();
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -38,11 +40,11 @@ export default function RootLayout({
           defaultTheme="system"
         >
           <Aoscompo>
-            <Header />
+            <Header contactInfo={contactInfo} />
             
             {children}
             
-            <Footer />
+            <Footer contactInfo={contactInfo} />
           </Aoscompo>
           <ScrollToTop />
           <Toaster position="top-center" />

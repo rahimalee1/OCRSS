@@ -12,7 +12,13 @@ const inputClass =
 const selectClass =
   "w-full rounded-md border border-border dark:border-dark_border border-solid bg-white dark:bg-dark px-5 py-3 text-base text-dark dark:text-white outline-hidden transition focus:border-primary dark:focus:border-primary [&>option]:bg-white [&>option]:text-dark dark:[&>option]:bg-dark dark:[&>option]:text-white";
 
-const ContactInfo = () => {
+import { gmailComposeUrl, mapsEmbedUrl, type SiteContactConfig } from "@/app/lib/site-contact";
+
+interface ContactInfoProps {
+  contactInfo?: SiteContactConfig;
+}
+
+const ContactInfo = ({ contactInfo }: ContactInfoProps) => {
   const [isVolunteerOpen, setIsVolunteerOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -72,7 +78,7 @@ const ContactInfo = () => {
                 Please feel free to drop us a line. We will respond as soon as possible.
               </p>
               <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=oromocultural@gmail.com&su=Inquiry%20from%20Website"
+                href={gmailComposeUrl(contactInfo?.email ?? "oromocultural@gmail.com")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary text-sm font-medium flex items-center gap-2 group-hover:text-midnight_text dark:group-hover:text-white transition-colors"
@@ -106,7 +112,7 @@ const ContactInfo = () => {
           </div>
           <div className="md:pt-32 pt-11 md:pb-28 pb-8">
             <iframe
-              src="https://www.google.com/maps?q=3025%20Nanaimo%20St%20%233,%20Vancouver,%20BC%20V5N%205W6,%20Canada&output=embed"
+              src={mapsEmbedUrl(contactInfo?.address ?? "3025 Nanaimo St #3, Vancouver, BC V5N 5W6, Canada")}
               width="1114"
               height="477"
               loading="lazy"

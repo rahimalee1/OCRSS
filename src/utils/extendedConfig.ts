@@ -55,6 +55,7 @@
         darklight: "#000f30",
         dark_border: "#203535",
         dark:"#00180f",
+        nav_box: "#111a14",
       },
 }
 

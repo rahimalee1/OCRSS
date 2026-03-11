@@ -3,11 +3,11 @@ import { getServerSession } from "next-auth";
 import { put, list } from "@vercel/blob";
 import { authOptions } from "@/app/api/auth/auth-options";
 import {
-  ADMIN_EMAIL,
   getDefaultSiteImages,
   type SiteImagesConfig,
   type SiteImageKey,
 } from "@/app/lib/site-images";
+import { getAdminEmail } from "@/app/lib/admin-credentials";
 
 const CONFIG_PATHNAME = "config/site-images.json";
 const VALID_KEYS: SiteImageKey[] = [
@@ -26,7 +26,8 @@ const VALID_KEYS: SiteImageKey[] = [
 export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session?.user?.email || session.user.email !== ADMIN_EMAIL) {
+    const adminEmail = await getAdminEmail();
+    if (!session?.user?.email || session.user.email !== adminEmail) {
       return NextResponse.json(
         { error: "Unauthorized. Admin access required." },
         { status: 403 }

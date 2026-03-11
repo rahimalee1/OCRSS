@@ -2,8 +2,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { authOptions } from "@/app/api/auth/auth-options";
-
-const ADMIN_EMAIL = "ocrssbc@gmail.com";
+import { getAdminEmail } from "@/app/lib/admin-credentials";
 
 async function AdminLayout({
   children,
@@ -14,7 +13,8 @@ async function AdminLayout({
   if (!session?.user) {
     redirect("/login?callbackUrl=/admin");
   }
-  if (session.user.email !== ADMIN_EMAIL) {
+  const adminEmail = await getAdminEmail();
+  if (session.user.email !== adminEmail) {
     redirect("/");
   }
 
