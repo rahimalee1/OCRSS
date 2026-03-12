@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   title: "Contact | OCRSS",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function ContactPage() {
   const siteImages = await getSiteImages();
   const contactInfo = await getSiteContact();

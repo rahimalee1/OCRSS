@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   title: "About Us | OCRSS",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function AboutPage() {
   const siteImages = await getSiteImages();
   return (

@@ -8,6 +8,8 @@ export const metadata: Metadata = {
     title: "Event List | OCRSS",
 };
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
     const siteImages = await getSiteImages();
     return (
