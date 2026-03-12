@@ -41,35 +41,12 @@ const DEFAULT_SITE_IMAGES: SiteImagesConfig = {
 export function getDefaultSiteImages(): SiteImagesConfig {
   return { ...DEFAULT_SITE_IMAGES };
 }
+let siteImagesOverrides: Partial<SiteImagesConfig> = {};
 
-const CONFIG_PATHNAME = "config/site-images.json";
+export function setSiteImage(key: SiteImageKey, url: string) {
+  siteImagesOverrides = { ...siteImagesOverrides, [key]: url };
+}
 
-/** Server-only: fetch current site images from Blob or return defaults */
 export async function getSiteImages(): Promise<SiteImagesConfig> {
-  try {
-    const token = process.env.BLOB_READ_WRITE_TOKEN;
-    if (!token) return getDefaultSiteImages();
-    const { list } = await import("@vercel/blob");
-    const { blobs } = await list({ prefix: "config/", token });
-    const configBlob = blobs.find((b) => b.pathname === CONFIG_PATHNAME);
-    if (!configBlob?.url) return getDefaultSiteImages();
-    const configUrl = `${configBlob.url}${configBlob.url.includes("?") ? "&" : "?"}_=${Date.now()}`;
-    const res = await fetch(configUrl, { cache: "no-store" });
-    if (!res.ok) return getDefaultSiteImages();
-    const data = (await res.json()) as Partial<SiteImagesConfig>;
-    return {
-      homeHero: data.homeHero ?? DEFAULT_SITE_IMAGES.homeHero,
-      donateBanner: data.donateBanner ?? DEFAULT_SITE_IMAGES.donateBanner,
-      aboutBanner: data.aboutBanner ?? DEFAULT_SITE_IMAGES.aboutBanner,
-      aboutUs: data.aboutUs ?? DEFAULT_SITE_IMAGES.aboutUs,
-      aboutCtaBg: data.aboutCtaBg ?? DEFAULT_SITE_IMAGES.aboutCtaBg,
-      servicesBanner: data.servicesBanner ?? DEFAULT_SITE_IMAGES.servicesBanner,
-      contactBanner: data.contactBanner ?? DEFAULT_SITE_IMAGES.contactBanner,
-      contactFormImage: data.contactFormImage ?? DEFAULT_SITE_IMAGES.contactFormImage,
-      eventsBanner: data.eventsBanner ?? DEFAULT_SITE_IMAGES.eventsBanner,
-      volunteerBg: data.volunteerBg ?? DEFAULT_SITE_IMAGES.volunteerBg,
-    };
-  } catch {
-    return getDefaultSiteImages();
-  }
+  return { ...DEFAULT_SITE_IMAGES, ...siteImagesOverrides };
 }

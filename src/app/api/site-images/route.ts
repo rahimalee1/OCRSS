@@ -1,29 +1,7 @@
 import { NextResponse } from "next/server";
-import { list } from "@vercel/blob";
-import { getDefaultSiteImages, type SiteImagesConfig } from "@/app/lib/site-images";
-
-const CONFIG_PATHNAME = "config/site-images.json";
+import { getSiteImages } from "@/app/lib/site-images";
 
 export async function GET() {
-  try {
-    const token = process.env.BLOB_READ_WRITE_TOKEN;
-    if (!token) {
-      return NextResponse.json(getDefaultSiteImages());
-    }
-    const { blobs } = await list({ prefix: "config/", token });
-    const configBlob = blobs.find((b) => b.pathname === CONFIG_PATHNAME);
-    if (!configBlob?.url) {
-      return NextResponse.json(getDefaultSiteImages());
-    }
-    const configUrl = `${configBlob.url}${configBlob.url.includes("?") ? "&" : "?"}_=${Date.now()}`;
-    const res = await fetch(configUrl, { cache: "no-store" });
-    if (!res.ok) {
-      return NextResponse.json(getDefaultSiteImages());
-    }
-    const data = (await res.json()) as Partial<SiteImagesConfig>;
-    const defaults = getDefaultSiteImages();
-    return NextResponse.json({ ...defaults, ...data });
-  } catch {
-    return NextResponse.json(getDefaultSiteImages());
-  }
+  const images = await getSiteImages();
+  return NextResponse.json(images);
 }

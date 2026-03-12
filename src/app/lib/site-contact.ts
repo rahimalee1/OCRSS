@@ -33,22 +33,13 @@ export function mapsEmbedUrl(address: string): string {
   return `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
 }
 
-const CONFIG_PATHNAME = "config/site-contact.json";
+let siteContactOverrides: Partial<SiteContactConfig> = {};
+
+export function setSiteContact(partial: Partial<SiteContactConfig>) {
+  siteContactOverrides = { ...siteContactOverrides, ...partial };
+}
 
 export async function getSiteContact(): Promise<SiteContactConfig> {
-  try {
-    const token = process.env.BLOB_READ_WRITE_TOKEN;
-    if (!token) return getDefaultSiteContact();
-    const { list } = await import("@vercel/blob");
-    const { blobs } = await list({ prefix: "config/", token });
-    const configBlob = blobs.find((b) => b.pathname === CONFIG_PATHNAME);
-    if (!configBlob?.url) return getDefaultSiteContact();
-    const res = await fetch(configBlob.url);
-    if (!res.ok) return getDefaultSiteContact();
-    const data = (await res.json()) as Partial<SiteContactConfig>;
-    const defaults = getDefaultSiteContact();
-    return { ...defaults, ...data };
-  } catch {
-    return getDefaultSiteContact();
-  }
+  const defaults = getDefaultSiteContact();
+  return { ...defaults, ...siteContactOverrides };
 }
