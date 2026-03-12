@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs";
-import { ADMIN_EMAIL } from "./site-images";
+import { ADMIN_EMAIL } from "./admin-constants";
 
 const INITIAL_PASSWORD = process.env.ADMIN_PASSWORD ?? "Oromoco2026";
 

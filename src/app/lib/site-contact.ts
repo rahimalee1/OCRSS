@@ -1,4 +1,4 @@
-export { ADMIN_EMAIL } from "./site-images";
+export { ADMIN_EMAIL } from "./admin-constants";
 
 export interface SiteContactConfig {
   email: string;

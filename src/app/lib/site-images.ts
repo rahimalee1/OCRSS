@@ -1,4 +1,4 @@
-export const ADMIN_EMAIL = "ocrssbc@gmail.com";
+import { ADMIN_EMAIL } from "./admin-constants";
 
 export type SiteImageKey =
   | "homeHero"
