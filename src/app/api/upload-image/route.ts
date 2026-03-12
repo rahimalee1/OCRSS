@@ -1,18 +1,15 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { put, list } from "@vercel/blob";
 import { authOptions } from "@/app/api/auth/auth-options";
 import {
   getDefaultSiteImages,
   type SiteImagesConfig,
   type SiteImageKey,
-  setSiteImage,
   getSiteImages,
 } from "@/app/lib/site-images";
+import { saveSiteImagesConfigToCloudinary } from "@/app/lib/site-images-cloudinary";
 import { getAdminEmail } from "@/app/lib/admin-credentials";
 import { getCloudinary } from "@/app/lib/cloudinary";
-
-const CONFIG_PATHNAME = "config/site-images.json";
 const VALID_KEYS: SiteImageKey[] = [
   "homeHero",
   "donateBanner",
@@ -78,8 +75,9 @@ export async function POST(request: Request) {
       uploadStream.end(buffer);
     });
 
-    setSiteImage(key as SiteImageKey, uploadResult.secure_url);
-    const fullConfig = { ...getDefaultSiteImages(), ...(await getSiteImages()) };
+    const current = await getSiteImages();
+    const fullConfig: SiteImagesConfig = { ...current, [key]: uploadResult.secure_url };
+    await saveSiteImagesConfigToCloudinary(fullConfig);
     return NextResponse.json({ url: uploadResult.secure_url, key, config: fullConfig });
   } catch (err) {
     console.error("Upload error:", err);
